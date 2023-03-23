@@ -1,0 +1,23 @@
+name: Game.cpp build
+
+on: [push]
+
+jobs:
+  build_macos:
+    name: macos
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build
+        run: clang++ -std=c++17 -c ./libs/libGame/Game.cpp -o game.o
+        
+  build_windows:
+    name: windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Build
+        run: cl /Wall /Fo game.obj ./libs/libGame/Game.cpp
