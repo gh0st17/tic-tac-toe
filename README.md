@@ -1,6 +1,8 @@
 # Tic Tac Toe
 Консольная игра крестики-нолики
 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/build.yml)
+
 # Список задач
 
 ## Пользовательский интерфейс
