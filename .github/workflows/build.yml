@@ -35,7 +35,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       
       - name: Build objects
-        run: cl /std:c++17 /Wall /c .\libs\libGame\Game.cpp .\libs\libGame\Player.cpp .\libs\libGame\UI.cpp .\src\main.cpp
+        run: cl /std:c++17 /c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
 
       - name: Link objects
-        run: cl /std:c++17 /Wall .\*.obj -o game
+        run: cl /std:c++17 ./*.obj -o game
