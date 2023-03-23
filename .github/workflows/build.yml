@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build_macos:
-    name: macos
+    name: macOS
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,12 +15,27 @@ jobs:
       - name: Link objects
         run: clang++ -std=c++17 -Wall ./*.o -o game
         
+  build_ubuntu:
+    name: Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build objects
+        run: g++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+      
+      - name: Link objects
+        run: g++ -std=c++17 -Wall ./*.o -o game
+        
   build_windows:
-    name: windows
+    name: Windows
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ilammy/msvc-dev-cmd@v1
       
       - name: Build objects
-        run: cl /Wall /c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+        run: cl /std:c++17 /Wall /c .\libs\libGame\Game.cpp .\libs\libGame\Player.cpp .\libs\libGame\UI.cpp .\src\main.cpp
+
+      - name: Link objects
+        run: cl /std:c++17 /Wall .\*.obj -o game
