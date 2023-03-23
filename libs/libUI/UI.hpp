@@ -3,7 +3,12 @@
 
 // Вывод каждых n "клеток" через
 // пробел на новой строке
-void print_field(unsigned short* field, unsigned n);
+// len - общая длина масива field
+// Про отображение X и 0:
+// Если элемент массива = 0 то выводишь просто пробел
+// Если = 1 это X
+// Если = 2 это 0
+void print_field(unsigned short* field, unsigned n, unsigned len);
 
 // Вывод приглашения на ввод клетки
 // Что-то вроде: "Ходит name: "
