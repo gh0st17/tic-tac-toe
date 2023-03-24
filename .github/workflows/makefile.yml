@@ -9,9 +9,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - shell: bash
+      - name: Alias
+        run: |
+          rc=/tmp/rcfile
+          echo 'shopt -s expand_aliases' > $rc
+          echo 'alias llvm-ar=ar ' >> $rc
+
+      - shell: bash
       - name: Make
         run: |
-          shopt -s expand_aliases
-          alias llvm-ar=ar
-          shopt -s expand_aliases
+          source /tmp/rcfile
           make
