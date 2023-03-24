@@ -9,11 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Fix alias
-        run: shopt -s expand_aliases
-
-      - name: Alias
-        run: alias llvm-ar=ar
-
       - name: Make
-        run: make
+        run: |
+          shopt -s expand_aliases
+          alias llvm-ar=ar
+          make
