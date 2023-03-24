@@ -8,13 +8,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: egor-tensin/setup-clang@v1
-        with:
-          version: latest
-          platform: x64
       
-      - name: Build by makefile
-        run: make
+      - name: Build objects
+        run: clang++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+      
+      - name: Link objects
+        run: clang++ -std=c++11 -Wall ./*.o -o game
 
   build_ubuntu:
     name: Ubuntu
@@ -22,8 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Build by makefile
-        run: make linux-release
+      - name: Build objects
+        run: g++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+      
+      - name: Link objects
+        run: g++ -std=c++11 -Wall ./*.o -o game
         
   build_windows:
     name: Windows
@@ -33,7 +35,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       
       - name: Build objects
-        run: cl /std:c++17 /c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+        run: cl /std:c++11 /c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
 
       - name: Link objects
-        run: cl /std:c++17 ./*.obj -o game
+        run: cl /std:c++11 ./*.obj -o game
