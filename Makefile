@@ -16,9 +16,9 @@ TESTS_OBJ_FILES := $(patsubst %.cpp, %.o, $(notdir $(TESTS_FILES)))
 
 CC := clang++
 AR := llvm-ar
-CXXFLAGS := -Wall
+CXXFLAGS := -std=c++11 -Wall
 
-.PHONY: clean clean_dSYM release debug tests done
+.PHONY: clean clean_dSYM release debug tests linux done
 
 release: CXXFLAGS += -Ofast -flto=full
 release: $(LIB_FILENAMES) $(TARGET) clean clean_dSYM done
@@ -27,6 +27,10 @@ debug: DBG := -debug
 debug: $(LIB_FILENAMES) $(TARGET) clean_dSYM $(TARGET).dSYM clean done
 test: CXXFLAGS += -flto=full
 test: $(TARGET)-test clean done
+linux-release: AR := ar
+linux-release: CC := g++
+linux-release: CXXFLAGS += -Ofast -flto=full
+linux-release: $(LIB_FILENAMES) $(TARGET) clean done
 
 $(TARGET): $(OBJ_FILES)
 	@echo "\033[1;36m\nBuilding target \"$@$(DBG)\" \033[0m"
