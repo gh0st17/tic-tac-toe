@@ -9,11 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Build objects
-        run: clang++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
-      
-      - name: Link objects
-        run: clang++ -std=c++17 -Wall ./*.o -o game
+      - name: Build by makefile
+        run: make
 
   build_ubuntu:
     name: Ubuntu
@@ -21,11 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Build objects
-        run: g++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
-      
-      - name: Link objects
-        run: g++ -std=c++17 -Wall ./*.o -o game
+      - name: Build by makefile
+        run: make
         
   build_windows:
     name: Windows
