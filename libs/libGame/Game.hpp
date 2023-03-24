@@ -9,13 +9,13 @@
 void run();
 
 // Тут я сделаю проверку выигрыша
-bool check_win_state(unsigned short* field);
+bool check_win_state(const unsigned short* field);
 
 // Проверяю корректость выбранной клетки
-bool check_cell(unsigned short cell_number);
+bool check_cell(const unsigned short* field, const unsigned short cell_number);
 
 // Уснановка в выбранную клетку
-void make_step(unsigned short cell_number);
+void make_step(unsigned short* field, const unsigned short cell_number, const bool player);
 
 // Тут будет генерироваться ход компьютеом
-unsigned short computer_step();
+unsigned short computer_step(const unsigned short* field);
