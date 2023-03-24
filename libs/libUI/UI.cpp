@@ -21,11 +21,11 @@ void print_prompt(const char* name) {
 
 bool select_mode() {
   bool mode;
-  char ch;
+  char ch = 'a';
 
   std::cout << "Enter 0 for play with computer or "
             << "1 for play in two players mode: ";
-  ch = std::getchar();
+  while(std::isdigit(ch = std::getchar()));
 
   return (ch - 48);
 }

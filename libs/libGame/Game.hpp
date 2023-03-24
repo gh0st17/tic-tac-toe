@@ -5,17 +5,32 @@
 #include "../libUI/UI.hpp"
 #include "../libPlayer/Player.hpp"
 
-// Основной метод игры
+// @brief Основной метод игры
 void run();
 
-// Тут я сделаю проверку выигрыша
+/* @brief Проверка выигрыша
+*  @param field Указатель на поле
+*  @return true если выигрыш, false - нет */
 bool check_win_state(const unsigned short* field);
 
-// Проверяю корректость выбранной клетки
-bool check_cell(const unsigned short* field, const unsigned short cell_number);
+/* @brief Проверка выбранной клетки на корректость 
+*  @param field Указатель на поле
+*  @param cell_number Номер клетки в поле
+*  @return true если клетка не занята
+           и в пределах поля, false - нет */
+bool check_cell(const unsigned short* field,
+                const unsigned short cell_number);
 
-// Уснановка в выбранную клетку
-void make_step(unsigned short* field, const unsigned short cell_number, const bool player);
+/* @brief Установка в выбранную клетку 
+*  @param field Указатель на поле
+*  @param cell_number Номер клетки в поле
+*  @param player Если true то это (0),
+                 иначе - (X) */
+void make_step(unsigned short* field,
+               const unsigned short cell_number,
+               const bool player);
 
-// Тут будет генерироваться ход компьютеом
+/* @brief Генерация хода компьютеом 
+*  @param field Указатель на поле
+*  @return Номер клетки */
 unsigned short computer_step(const unsigned short* field);
