@@ -1,0 +1,16 @@
+name: Makefile
+
+on: [push]
+
+jobs:
+  build_macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Alias
+        run: alias llvm-ar=ar
+
+      - name: Make
+        run: make
