@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <limits>
 
 // Ну тут просто:
 // Вводишь в переменную типа unsigned short
