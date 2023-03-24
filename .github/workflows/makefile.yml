@@ -8,16 +8,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Alias
-        shell: bash
-        run: |
-          rc=/tmp/rcfile
-          echo 'shopt -s expand_aliases' > $rc
-          echo 'alias llvm-ar=ar ' >> $rc
 
       - name: Make
-        shell: bash
-        run: |
-          source /tmp/rcfile
-          make
+        run: make ar
