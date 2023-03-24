@@ -1,0 +1,34 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build_macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build objects
+        run: clang++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./tests/tests.cpp ./tests/main.cpp
+      
+      - name: Link objects
+        run: clang++ -std=c++17 -Wall ./*.o -o tests
+      
+      - name: Runing tests
+        run: ./tests
+
+  build_ubuntu:
+    name: Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build objects
+        run: g++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./tests/tests.cpp ./tests/main.cpp
+      
+      - name: Link objects
+        run: g++ -std=c++17 -Wall ./*.o -o tests
+      
+      - name: Runing tests
+        run: ./tests

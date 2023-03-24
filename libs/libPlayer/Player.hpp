@@ -4,4 +4,4 @@
 
 /* @brief Чтение числа больше 0 с клавиатуры
 *  @return Число больше 0 */
-unsigned short get_cell_number();
+unsigned short get_number();

@@ -23,9 +23,9 @@ void run() {
     else
       do
         print_prompt(!player ? "Player(X)" : "Player(0)");
-      while (!check_cell(field, cell_n = get_cell_number() - 1));
+      while (!check_cell(field, cell_n = get_number() - 1));
 
-    make_step(field, cell_n, player);
+    field[cell_n] = (!player ? 1 : 2);
     player = !player;
 
     print(field);
@@ -41,13 +41,13 @@ void run() {
 }
 
 bool check_win_state(const unsigned short* field) {
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 3; i++) // Строки
     if (field[i * 3] == field[i * 3 + 1] &&
         field[i * 3 + 1] == field[i * 3 + 2] &&
         field[i * 3] != 0)
           return true;
 
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 3; i++) // Столбцы
     if (field[i] == field[i + 3] &&
         field[i + 3] == field[i + 6] &&
         field[i] != 0)
@@ -55,12 +55,12 @@ bool check_win_state(const unsigned short* field) {
   
   if (field[0] == field[4] &&
       field[4] == field[8] &&
-      field[0] != 0)
+      field[0] != 0) // Главная диагональ
         return true;
   
   if (field[2] == field[4] &&
       field[4] == field[6] &&
-      field[2] != 0)
+      field[2] != 0) // Побочная диагональ
         return true;
 
   return false;
@@ -70,14 +70,6 @@ bool check_cell(const unsigned short* field,
                 const unsigned short cell_number) {
   return cell_number < 9 && !field[cell_number];
 }
-
-
-void make_step(unsigned short* field,
-               const unsigned short cell_number,
-               const bool player) {
-  field[cell_number] = (!player ? 1 : 2);
-}
-
 
 unsigned short computer_step(const unsigned short* field) {
   std::srand(std::time(0U));

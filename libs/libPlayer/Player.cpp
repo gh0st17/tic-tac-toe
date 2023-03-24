@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-unsigned short get_cell_number() {
+unsigned short get_number() {
   auto clear = []() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

@@ -21,15 +21,6 @@ bool check_win_state(const unsigned short* field);
 bool check_cell(const unsigned short* field,
                 const unsigned short cell_number);
 
-/* @brief Установка в выбранную клетку 
-*  @param field Указатель на поле
-*  @param cell_number Номер клетки в поле
-*  @param player Если true то это (0),
-                 иначе - (X) */
-void make_step(unsigned short* field,
-               const unsigned short cell_number,
-               const bool player);
-
 /* @brief Генерация хода компьютеом 
 *  @param field Указатель на поле
 *  @return Номер клетки */
