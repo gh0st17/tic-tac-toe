@@ -1,8 +1,6 @@
-name: Game.cpp build
+name: Build all
 
 on: [push]
-permissions:
-  contents: read
   
 jobs:
   build_macos:
