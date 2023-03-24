@@ -29,7 +29,7 @@ test: CXXFLAGS += -flto=full
 test: $(TARGET)-test clean done
 linux-release: AR := ar
 linux-release: CC := g++
-linux-release: CXXFLAGS += -Ofast -flto=full
+linux-release: CXXFLAGS += -Ofast
 linux-release: $(LIB_FILENAMES) $(TARGET) clean done
 
 $(TARGET): $(OBJ_FILES)
