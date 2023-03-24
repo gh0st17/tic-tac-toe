@@ -13,4 +13,5 @@ jobs:
         run: |
           shopt -s expand_aliases
           alias llvm-ar=ar
+          shopt -s expand_aliases
           make
