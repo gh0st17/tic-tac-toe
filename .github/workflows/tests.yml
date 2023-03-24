@@ -13,10 +13,10 @@ jobs:
         run: clang++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./tests/tests.cpp ./tests/main.cpp
       
       - name: Link objects
-        run: clang++ -std=c++17 -Wall ./*.o -o tests
+        run: clang++ -std=c++17 -Wall ./*.o -o test
       
       - name: Runing tests
-        run: ./tests
+        run: ./test
 
   build_ubuntu:
     name: Ubuntu
@@ -28,7 +28,7 @@ jobs:
         run: g++ -std=c++17 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./tests/tests.cpp ./tests/main.cpp
       
       - name: Link objects
-        run: g++ -std=c++17 -Wall ./*.o -o tests
+        run: g++ -std=c++17 -Wall ./*.o -o test
       
       - name: Runing tests
-        run: ./tests
+        run: ./test
