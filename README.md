@@ -3,7 +3,7 @@
 
 Консольная игра крестики-нолики
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/gh0st17/tic-tac-toe?display_name=tag)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/gh0st17/tic-tac-toe)
 
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/gh0st17/tic-tac-toe)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/gh0st17/tic-tac-toe)
