@@ -10,9 +10,7 @@
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/gh0st17/tic-tac-toe)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/build.yml)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/tests.yml?label=tests)
-<!---
-#![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/makefile.yml?label=makefile)
--->
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/makefile.yml?label=makefile)
 
 # Список задач
 
@@ -28,5 +26,4 @@
 - [x] Основной метод игры
 - [x] Проверка наличия выигрышной ситуации (Тест автоматизирован)
 - [x] Проверка доступности клетки (Тест автоматизирован)
-- [x] Пометка выбранной клетки на поле (Требуется ручной тест)
 - [x] Генерация хода компьютером (Тест автоматизирован)

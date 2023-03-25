@@ -1,6 +1,12 @@
 name: Makefile
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+      - './Makefile'
 
 jobs:
   build_macos:
@@ -9,5 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Fix ar
+        run: sed -i '' "s/llvm-ar/ar/g" Makefile
+
       - name: Make
-        run: make ar
+        run: make
