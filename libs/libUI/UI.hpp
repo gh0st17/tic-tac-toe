@@ -9,9 +9,7 @@ void print_field(const unsigned short* field,
                  unsigned n, unsigned len);
 
 /* @brief Вывод приглашения на ввод для игрока name
-*  @param name Имя игрока
-*  @param n Ширина поля
-*  @param len Количество клеток в поле */
+*  @param name Имя игрока */
 void print_prompt(const char* name);
 
 /* @brief Выбор пользователем режима игры
