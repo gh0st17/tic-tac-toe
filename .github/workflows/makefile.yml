@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Make
-        run: make ar
+        run: make
