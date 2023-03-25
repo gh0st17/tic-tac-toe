@@ -21,16 +21,16 @@ CXXFLAGS := -std=c++11 -Wall
 .PHONY: clean clean_dSYM release debug tests done
 
 release: CXXFLAGS += -Ofast -flto=full
-release: $(LIB_FILENAMES) $(TARGET) clean clean_dSYM done
+release: $(TARGET) clean clean_dSYM done
 debug: CXXFLAGS += -O0 -g -fsanitize=address
 debug: DBG := -debug
-debug: $(LIB_FILENAMES) $(TARGET) clean_dSYM $(TARGET).dSYM clean done
+debug: $(TARGET) clean_dSYM $(TARGET).dSYM clean done
 test: CXXFLAGS += -flto=full
-test: $(TARGET)-test clean done
+test: $(TARGET)-test
 
-$(TARGET): $(OBJ_FILES)
+$(TARGET): $(LIB_FILENAMES) $(OBJ_FILES)
 	@echo "\033[1;36m\nBuilding target \"$@$(DBG)\" \033[0m"
-	$(CC) $(CXXFLAGS) -L$(LIB_DIR) $(patsubst lib%.a, -l%, $(LIB_FILENAMES)) -o $@ $^
+	$(CC) $(CXXFLAGS) -L$(LIB_DIR) $(patsubst lib%.a, -l%, $(LIB_FILENAMES)) -o $@ $(OBJ_FILES)
 
 $(OBJ_FILES): $(SRC_FILES)
 	@echo "\033[1;33m\nBuilding object files\033[0m"
@@ -47,6 +47,7 @@ $(LIB_FILENAMES): $(LIB_OBJ_FILES)
 $(TARGET)-test:
 	@echo "\033[1;36m\nBuilding target \"$@\" \033[0m"
 	$(CC) $(CXXFLAGS) $(LIB_FILES) $(TESTS_FILES) -o $@
+	$(MAKE) done
 
 $(TARGET).dSYM: $(TARGET)
 	@echo "\033[1;33m\nGenerating new $(TARGET).dSYM\033[0m"
