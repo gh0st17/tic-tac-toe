@@ -1,6 +1,12 @@
 name: Makefile
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+      - './Makefile'
 
 jobs:
   build_macos:
