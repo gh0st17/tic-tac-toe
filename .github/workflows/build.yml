@@ -1,6 +1,11 @@
 name: Build all
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.cpp'
+      - '**.hpp'
 
 jobs:
   build_macos:
