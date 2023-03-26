@@ -13,7 +13,7 @@ void run();
 * @param field Указатель на поле
 * @return true если выигрыш, false - нет
 */
-bool check_win_state(const unsigned short* field);
+bool check_win_state(const Field field);
 
 /** 
 * @brief Проверка выбранной клетки на корректость 
@@ -22,7 +22,7 @@ bool check_win_state(const unsigned short* field);
 * @return true если клетка не занята
 *           и в пределах поля, false - нет 
 */
-bool check_cell(const unsigned short* field,
+bool check_cell(const Field field,
                 const unsigned short cell_number);
 
 /** 
@@ -30,4 +30,4 @@ bool check_cell(const unsigned short* field,
 * @param field Указатель на поле
 * @return Номер клетки
 */
-unsigned short computer_step(const unsigned short* field);
+unsigned short computer_step(const Field field);

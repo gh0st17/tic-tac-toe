@@ -1,14 +1,14 @@
 #include "UI.hpp"
 
-void print_field(const unsigned short* field,
+void print_field(const Field field,
                  unsigned n, unsigned len) {
   for (unsigned i = 0; i < len; i++) {
-    if (field[i] == 0)
-      std::cout << "* ";
-    else if (field[i] == 1)
+    if (field[i] == Cell::X)
       std::cout << "X ";
-    else if (field[i] == 2)
+    else if (field[i] == Cell::O)
       std::cout << "0 ";
+    else
+      std::cout << "* ";
 
     if ((i + 1) % n == 0)
       std::cout << std::endl;

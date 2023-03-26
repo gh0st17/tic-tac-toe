@@ -2,12 +2,22 @@
 #include <iostream>
 
 /**
+* @brief Перечисление возможных типов клетки
+*/
+enum class Cell { Unused, X, O };
+
+/**
+* @brief Массив ячеек (клеток) как поле
+*/
+typedef Cell* Field;
+
+/**
 * @brief Вывод поля на экран
 * @param field Указатель на поле
 * @param n Ширина поля
 * @param len Количество клеток в поле
 */
-void print_field(const unsigned short* field,
+void print_field(const Field field,
                  unsigned n, unsigned len);
 
 /**
