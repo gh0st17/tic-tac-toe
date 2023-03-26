@@ -35,7 +35,7 @@ void run() {
     std::cout << (!player ? "(0)" :
       (!mode ? "Computer(X)" : "(X)")) << " win!\n";
   else if (steps_count == 10)
-    std::cout << "N/A win!";
+    std::cout << "N/A win!\n";
 
   delete[] field;
 }
