@@ -10,6 +10,7 @@ void reset_field(Field field) {
 bool run_all_tests() {
   field = new Cell[9]();
   bool (*tests[])() = {
+    test_select_mode, test_get_number, 
     test_check_win_state, test_check_cell,
     test_computer_step
   };
@@ -19,6 +20,49 @@ bool run_all_tests() {
       return false;
 
   std::cout << "All tests passed!\n";
+  return true;
+}
+
+bool test_select_mode() {
+  std::cout << "Running Test Select mode\n";
+
+  std::istringstream iss("12\n\
+2\n\
+abracodabre6,\n\
+77\n\n");
+
+  size_t lines = 5;
+  std::cin.rdbuf(iss.rdbuf());
+
+  while (--lines) {
+    if (!select_mode()) {
+      std::cout << "\nSelection player mode failed\n";
+      return false;
+    }
+  }
+
+  std::cout << std::endl;
+  return true;
+}
+
+bool test_get_number() {
+  std::cout << "Running Test Get number\n";
+
+  std::istringstream iss("12\n\
+2\n\
+57abracodabre6,\n0asd\n\
+77\n");
+
+  size_t lines = 5;
+  std::cin.rdbuf(iss.rdbuf());
+
+  while (--lines) {
+    if (!get_number()) {
+      std::cout << "Selection player mode failed\n";
+      return false;
+    }
+  }
+
   return true;
 }
 
