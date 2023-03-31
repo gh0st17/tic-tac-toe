@@ -36,7 +36,8 @@ abracodabre6,\n\
 
   while (--lines) {
     if (!select_mode()) {
-      std::cout << "\nSelection player mode failed\n";
+      std::cout << "\nSelection player "
+                << "mode failed\n";
       return false;
     }
   }
@@ -58,7 +59,8 @@ bool test_get_number() {
 
   while (--lines) {
     if (!get_number()) {
-      std::cout << "Selection player mode failed\n";
+      std::cout << "Getting non-zero "
+                   "value failed\n";
       return false;
     }
   }
@@ -67,7 +69,8 @@ bool test_get_number() {
 }
 
 bool test_check_win_state() {
-  std::cout << "Running Test Check winner state\n";
+  std::cout << "Running Test Check "
+               "winner state\n";
 
   Cell fields[8][9];
 
@@ -90,7 +93,8 @@ bool test_check_win_state() {
 
   for (const auto& f : fields) {
     if (!check_win_state((Field)f)) {
-      std::cout << "Detecting winner state failed\n";
+      std::cout << "Detecting winner "
+                << "state failed\n";
       return false;
     }
   }
