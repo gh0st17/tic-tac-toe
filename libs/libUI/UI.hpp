@@ -12,6 +12,11 @@ enum class Cell { Unused, X, O };
 typedef Cell* Field;
 
 /**
+* @brief Вывод инструкции по вводу номер клетки
+*/
+void print_manual();
+
+/**
 * @brief Вывод поля на экран
 * @param field Указатель на поле
 * @param n Ширина поля

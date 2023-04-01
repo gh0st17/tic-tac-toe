@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
 void run() {
+  print_manual();
   bool mode = select_mode();
   bool player = false;
   Field field = new Cell[9]();

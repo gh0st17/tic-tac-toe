@@ -1,5 +1,17 @@
 #include "UI.hpp"
 
+void print_manual() {
+  std::cout << "The cell numbers are assigned "
+            << "as follows\n";
+
+  for (size_t i = 0; i < 9; i++) {
+    std::cout << i + 1 << ' ';
+
+    if ((i + 1) % 3 == 0)
+      std::cout << std::endl;
+  }
+}
+
 void print_field(const Field field,
                  unsigned n, unsigned len) {
   for (unsigned i = 0; i < len; i++) {
