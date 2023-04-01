@@ -47,7 +47,7 @@ $(LIB_FILENAMES): $(LIB_OBJ_FILES)
 $(TARGET)-test:
 	@echo "\033[1;36m\nBuilding target \"$@\" \033[0m"
 	$(CC) $(CXXFLAGS) $(LIB_FILES) $(TESTS_FILES) -o $@
-	$(MAKE) done
+	@$(MAKE) done
 
 $(TARGET).dSYM: $(TARGET)
 	@echo "\033[1;33m\nGenerating new $(TARGET).dSYM\033[0m"

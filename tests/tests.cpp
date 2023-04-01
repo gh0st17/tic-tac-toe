@@ -19,6 +19,7 @@ bool run_all_tests() {
     for (const auto& test: tests)
       test();
 
+    delete[] field;
     std::cout << "All tests passed!\n";
     return true;
   }
@@ -34,6 +35,7 @@ bool run_all_tests() {
               << e.what() << std::endl;
   }
 
+  delete[] field;
   return false;
 }
 
@@ -105,10 +107,27 @@ void test_check_win_state() {
 void test_check_cell() {
   std::cout << "Running Test Check cell\n";
 
+  reset_field(field);
   for (size_t i = 0; i < 9; i++) {
+    if (!check_cell(field, i))
+      throw TestException("Check empty "
+                          "cell failed");
+
     field[i] = Cell::X;
+
     if (check_cell(field, i))
-      throw TestException("Check cell failed");
+      throw TestException("Check used "
+                          "cell failed");
+  }
+
+  std::srand(std::time(0));
+  for (size_t i = 0; i < 0xFFFFULL; i++) {
+    field[i % 8] = (rand() % 2) ?
+                      Cell::X : Cell::Unused;
+
+    if (check_cell(field, 8 + rand() % 0xFFF8))
+      throw TestException("Check random "
+                          "cell failed");
   }
 }
 
@@ -116,10 +135,15 @@ void test_computer_step() {
   std::cout << "Running Test Computer step\n";
 
   unsigned short step;
-  for (size_t i = 0; i < 100000; i++) {
+  for (size_t i = 0; i < 0x100000; i++) {
     reset_field(field);
     step = computer_step(field);
-    if (step > 9 || !check_cell(field, step))
-      throw TestException("Computer step failed");
+    if (step >= 9 && check_cell(field, step))
+      throw TestException("Computer step "
+                          "greater 9 failed");
+
+    if (step < 9 && !check_cell(field, step))
+      throw TestException("Computer step "
+                          "less 9 failed");
   }
 }
