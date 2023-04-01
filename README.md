@@ -12,11 +12,11 @@
 
 ## Прогресс выполнения лабораторных работ
 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/1)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/1)](https://github.com/gh0st17/tic-tac-toe/issues?q=is%3Aissue+milestone%3A%22Отчет+по+лабораторной+работе+№1%22)
 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/2)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/2)](https://github.com/gh0st17/tic-tac-toe/issues?q=is%3Aissue+milestone%3A%22Отчет+по+лабораторной+работе+№2%22)
 
-![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/3)
+[![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/3)](https://github.com/gh0st17/tic-tac-toe/issues?q=is%3Aissue+milestone%3A%22Отчет+по+лабораторной+работе+№3%22)
 
 ## Список задач
 
