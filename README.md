@@ -10,6 +10,14 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/tests.yml?label=tests)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gh0st17/tic-tac-toe/.github/workflows/makefile.yml?label=makefile)
 
+## Прогресс выполнения лабораторных работ
+
+![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/1)
+
+![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/2)
+
+![GitHub milestone](https://img.shields.io/github/milestones/progress/gh0st17/tic-tac-toe/3)
+
 ## Список задач
 
 ### Пользовательский интерфейс
