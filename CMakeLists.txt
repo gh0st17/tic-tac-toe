@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(tictactoe)
 
 set(SOURCE_EXE src/main.cpp)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(libs/libGame libs/libUI libs/libPlayer tests)
 
