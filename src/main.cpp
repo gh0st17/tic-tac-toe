@@ -7,7 +7,7 @@ int main() {
     return 0;
   }
   catch (std::bad_alloc const&) {
-    std::cerr << "Can't allocate memory";
+    std::cerr << "Can't allocate memory\n";
   }
   catch (const std::exception& e) {
     std::cerr << "Exception: "

@@ -12,7 +12,7 @@ enum class Cell { Unused, X, O };
 typedef Cell* Field;
 
 /**
-* @brief Вывод инструкции по вводу номер клетки
+* @brief Вывод инструкции по вводу номера клетки
 */
 void print_manual();
 

@@ -24,7 +24,7 @@ bool run_all_tests() {
     return true;
   }
   catch (std::bad_alloc const&) {
-    std::cerr << "Can't allocate memory";
+    std::cerr << "Can't allocate memory\n";
   }
   catch (const TestException& e) {
     std::cerr << "TestException: "
@@ -135,7 +135,7 @@ void test_computer_step() {
   std::cout << "Running Test Computer step\n";
 
   unsigned short step;
-  for (size_t i = 0; i < 0x100000; i++) {
+  for (size_t i = 0; i < 100000; i++) {
     reset_field(field);
     step = computer_step(field);
     if (step >= 9 && check_cell(field, step))
