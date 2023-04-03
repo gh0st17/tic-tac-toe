@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(libGame)
+project(Game)
 set(SOURCE_LIB Game.cpp)
-add_library(libGame STATIC ${SOURCE_LIB})
+add_library(Game STATIC ${SOURCE_LIB})

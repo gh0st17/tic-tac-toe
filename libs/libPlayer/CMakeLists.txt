@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(libPlayer)
+project(Player)
 set(SOURCE_LIB Player.cpp)
-add_library(libPlayer STATIC ${SOURCE_LIB})
+add_library(Player STATIC ${SOURCE_LIB})

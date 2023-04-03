@@ -4,5 +4,5 @@ if(BUILD_TESTS)
 
   set(SOURCE_EXE main.cpp tests.cpp)
   add_executable(tictactoe-test ${SOURCE_EXE})
-  target_link_libraries(tictactoe-test libGame libUI libPlayer)
+  target_link_libraries(tictactoe-test UI Player Game)
 endif()
