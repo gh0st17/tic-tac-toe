@@ -7,6 +7,7 @@ on:
       - '**.cpp'
       - '**.hpp'
       - '**/CMakeLists.txt'
+      - '.github/workflows/cmake.yml'
 
 jobs:
   build_macos:
@@ -26,7 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
+      - name: Fix LTO
+        run: sed -i '' "s/-flto=full/-flto/g" CMakeLists.txt
+      
       - name: CMake configure
         run: cmake -G "Unix Makefiles" -B ./build .
 
