@@ -137,6 +137,7 @@ void test_computer_step() {
   unsigned short step;
   for (size_t i = 0; i < 100000; i++) {
     reset_field(field);
+    
     step = computer_step(field);
     if (step >= 9 && check_cell(field, step))
       throw TestException("Computer step "
