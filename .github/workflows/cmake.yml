@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Fix LTO
-        run: sed -i '' "s/-flto=full/-flto/g" CMakeLists.txt
+        run: sed -i 's/-flto=full/-flto/g' CMakeLists.txt
       
       - name: CMake configure
         run: cmake -G "Unix Makefiles" -B ./build .
