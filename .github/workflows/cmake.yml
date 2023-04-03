@@ -3,10 +3,6 @@ name: CMake
 on:
   push:
     branches: [ main ]
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**/CMakeLists.txt'
 
 jobs:
   build_macos:
