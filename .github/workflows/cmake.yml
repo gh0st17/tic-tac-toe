@@ -1,0 +1,22 @@
+name: CMake
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+      - '**CMakeLists.txt'
+
+jobs:
+  build_macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: CMake
+        run: cmake -G "Unix Makefiles" -B ./build .
+
+      - name: CMake build
+        run: cmake --build ./build
