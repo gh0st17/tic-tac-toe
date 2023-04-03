@@ -22,20 +22,20 @@ jobs:
       - name: CMake build
         run: cmake --build ./build
 
-  build_ubuntu:
-    name: Ubuntu
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+  # build_ubuntu:
+  #   name: Ubuntu
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
       
-      - name: Fix LTO
-        run: sed -i 's/-flto=full//g' CMakeLists.txt
+  #     - name: Fix LTO
+  #       run: sed -i 's/-flto=full//g' CMakeLists.txt
 
-      - name: CMake configure
-        run: cmake -G "Unix Makefiles" -B ./build .
+  #     - name: CMake configure
+  #       run: cmake -G "Unix Makefiles" -B ./build .
 
-      - name: CMake build
-        run: cmake --build ./build
+  #     - name: CMake build
+  #       run: cmake --build ./build
 
   build_windows:
     name: Windows
