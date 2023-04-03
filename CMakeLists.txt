@@ -3,18 +3,19 @@ project(tictactoe)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_BUILD_TYPE
-    Release
-    CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS
-    "-Wall"
-    CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_DEBUG
-    "-O0 -g -fsanitize=address"
-    CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE
-    "-Ofast -flto=full -DNDEBUG"
-    CACHE STRING "" FORCE)
+
+if (NOT CMAKE_GENERATOR MATCHES "Visual Studio")
+  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_CXX_FLAGS
+      "${CMAKE_CXX_FLAGS} -Wall")
+  set(CMAKE_CXX_FLAGS_DEBUG
+      "-O0 -g -fsanitize=address")
+  set(CMAKE_CXX_FLAGS_RELEASE
+      "-Ofast -flto=full -DNDEBUG")
+else()
+  set(CMAKE_CXX_FLAGS
+      "${CMAKE_CXX_FLAGS} /Wall")
+endif()
     
 option(BUILD_TESTS "Set to ON to build tests" OFF)
 
