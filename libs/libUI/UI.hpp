@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "../libGame/Game.hpp"
 
 /**
 * @brief Перечисление возможных типов клетки
@@ -18,12 +19,8 @@ void print_manual();
 
 /**
 * @brief Вывод поля на экран
-* @param field Указатель на поле
-* @param n Ширина поля
-* @param len Количество клеток в поле
 */
-void print_field(const Field field,
-                 unsigned n, unsigned len);
+void print_field();
 
 /**
 * @brief Выбор пользователем режима игры

@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+Field field;
+
 bool check_win_state(const Field field) {
   for (int i = 0; i < 3; i++) // Строки
     if (field[i * 3] == field[i * 3 + 1] &&
@@ -38,5 +40,5 @@ bool make_step(const Field field,
 }
 
 Field get_field() {
-
+  return field;
 }

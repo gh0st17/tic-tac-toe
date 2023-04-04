@@ -12,9 +12,9 @@ void print_manual() {
   }
 }
 
-void print_field(const Field field,
-                 unsigned n, unsigned len) {
-  for (unsigned i = 0; i < len; i++) {
+void print_field() {
+  Field field = get_field();
+  for (unsigned i = 0; i < 9; i++) {
     if (field[i] == Cell::X)
       std::cout << "X ";
     else if (field[i] == Cell::O)
@@ -22,7 +22,7 @@ void print_field(const Field field,
     else
       std::cout << "* ";
 
-    if ((i + 1) % n == 0)
+    if ((i + 1) % 3 == 0)
       std::cout << std::endl;
   }
 }
