@@ -26,13 +26,18 @@ void print_field(const Field field,
                  unsigned n, unsigned len);
 
 /**
-* @brief Вывод приглашения на ввод для игрока name
-* @param name Имя игрока
-*/
-void print_prompt(const char* name);
-
-/**
 * @brief Выбор пользователем режима игры
 * @return true или false
 */
 bool select_mode();
+
+/**
+* @brief Ввод клетки
+* @return Номер клетки
+*/
+unsigned short read_step(const char* name);
+
+/**
+* @brief Вывод сообщения об ошибке
+*/
+void print_error(const char* error_str);

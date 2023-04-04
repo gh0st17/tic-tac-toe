@@ -23,11 +23,12 @@ set(SOURCE_EXE src/main.cpp)
 add_executable(tictactoe ${SOURCE_EXE})
 
 add_subdirectory(libs/libUI)
-add_subdirectory(libs/libPlayer)
+add_subdirectory(libs/libAI)
+add_subdirectory(libs/libError)
 add_subdirectory(libs/libGame)
 
 if(BUILD_TESTS)
   add_subdirectory(tests)
 endif()
 
-target_link_libraries(tictactoe UI Player Game)
+target_link_libraries(tictactoe UI AI Error Game)

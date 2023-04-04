@@ -27,10 +27,6 @@ void print_field(const Field field,
   }
 }
 
-void print_prompt(const char* name) {
-  std::cout << "Player " << name << " moves: ";
-}
-
 bool select_mode() {
   char ch = 0;
 
@@ -40,4 +36,28 @@ bool select_mode() {
     std::cin >> ch;
 
   return (ch - 48);
+}
+
+unsigned short read_step(const char* name) {
+  std::cout << "Player " << name << " moves: ";
+
+  auto clear = []() {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  };
+
+  unsigned short tmp = 0;
+  while (true) {
+    if (std::cin >> tmp && tmp > 0)
+      break;
+    else
+      clear();
+  }
+  clear();
+  return tmp;
+}
+
+void print_error(const char* error_str) {
+  std::cout << "An error occured: "
+            << error_str << std::endl;
 }
