@@ -3,16 +3,6 @@
 #include "../libGame/Game.hpp"
 
 /**
-* @brief Перечисление возможных типов клетки
-*/
-enum class Cell { Unused, X, O };
-
-/**
-* @brief Массив ячеек (клеток) как поле
-*/
-typedef Cell* Field;
-
-/**
 * @brief Вывод инструкции по вводу номера клетки
 */
 void print_manual();

@@ -2,7 +2,7 @@
 
 Field field;
 
-bool check_win_state(const Field field) {
+bool check_win_state() {
   for (int i = 0; i < 3; i++) // Строки
     if (field[i * 3] == field[i * 3 + 1] &&
         field[i * 3 + 1] == field[i * 3 + 2] &&
@@ -28,11 +28,10 @@ bool check_win_state(const Field field) {
   return false;
 }
 
-bool make_step(const Field field,
-               const unsigned short cell_number,
-               const Cell cell) {
+bool make_step(const unsigned short cell_number,
+               const Cell cell_value) {
   if (cell_number < 9 && field[cell_number] == Cell::Unused) {
-    field[cell_number] = cell;
+    field[cell_number] = cell_value;
     return true;
   }
   else
@@ -41,4 +40,13 @@ bool make_step(const Field field,
 
 Field get_field() {
   return field;
+}
+
+void init_field() {
+  field = new Cell[9]();
+}
+
+void destroy_field() {
+  if (field)
+    delete[] field;
 }

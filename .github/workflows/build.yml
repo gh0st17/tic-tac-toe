@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Build objects
-        run: clang++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+        run: clang++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libAI/AI.cpp ./libs/libError/Error.cpp ./libs/libUI/UI.cpp ./src/main.cpp
       
       - name: Link objects
         run: clang++ -std=c++11 -Wall ./*.o -o game
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Build objects
-        run: g++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+        run: g++ -std=c++11 -Wall -c ./libs/libGame/Game.cpp ./libs/libAI/AI.cpp ./libs/libError/Error.cpp ./libs/libUI/UI.cpp ./src/main.cpp
       
       - name: Link objects
         run: g++ -std=c++11 -Wall ./*.o -o game
@@ -40,7 +40,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       
       - name: Build objects
-        run: cl /std:c++11 /c ./libs/libGame/Game.cpp ./libs/libPlayer/Player.cpp ./libs/libUI/UI.cpp ./src/main.cpp
+        run: cl /std:c++11 /c ./libs/libGame/Game.cpp ./libs/libAI/AI.cpp ./libs/libError/Error.cpp ./libs/libUI/UI.cpp ./src/main.cpp
 
       - name: Link objects
         run: cl /std:c++11 ./*.obj -o game

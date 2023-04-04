@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <random>
-#include <ctime>
 
 /** 
 * @brief Генерация хода компьютеом
