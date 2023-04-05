@@ -7,7 +7,14 @@
 
 int main() {
   print_manual();
-  bool mode = select_mode();
+
+  unsigned mode = 10;
+  while (mode > 9) {
+    mode = select_mode();
+    if (mode > 9)
+      call_error_code(3);
+  }
+
   bool player = false;
   std::srand(std::time(0U));
   init_field();
