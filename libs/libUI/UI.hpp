@@ -16,7 +16,7 @@ void print_field();
 * @brief Выбор пользователем режима игры
 * @return true или false
 */
-bool select_mode();
+unsigned select_mode();
 
 /**
 * @brief Ввод клетки
