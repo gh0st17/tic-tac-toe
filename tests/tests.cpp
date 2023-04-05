@@ -41,7 +41,7 @@ bool test_select_mode() {
 }
 
 bool test_read_step() {
-  std::cout << "Running Test Get number\n";
+  std::cout << "Running Test Read step\n";
 
   std::freopen("read_step_assets.txt", "r", stdin);
 
