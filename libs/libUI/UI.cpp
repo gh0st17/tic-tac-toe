@@ -27,15 +27,16 @@ void print_field() {
   }
 }
 
-bool select_mode() {
+unsigned select_mode() {
   char ch = 0;
 
   std::cout << "Enter 0 for play with computer or "
             << "any digit for play in two players mode: ";
-  while (!std::isdigit(ch))
-    std::cin >> ch;
-
-  return (ch - 48);
+  std::cin >> ch;
+  if (!std::isdigit(ch))
+    return 10;
+  else
+    return (ch - 48);
 }
 
 unsigned short read_step(const char* name) {
