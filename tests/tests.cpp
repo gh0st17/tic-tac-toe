@@ -1,81 +1,61 @@
 #include "tests.hpp"
 
-Field field;
+Field test_field;
 
-void reset_field(Field field) {
+void reset_field(Field test_field) {
   for (size_t i = 0; i < 9; i++)
-    field[i] = Cell::Unused;
+    test_field[i] = Cell::Unused;
 };
 
 bool run_all_tests() {
-  field = new Cell[9]();
-  void (*tests[])() = {
-    test_select_mode, test_get_number, 
-    test_check_win_state, test_check_cell,
+  test_field = new Cell[9]();
+  bool (*tests[])() = {
+    test_select_mode, test_read_step, 
+    test_check_win_state, test_make_step,
     test_computer_step
   };
 
-  try {
-    for (const auto& test: tests)
-      test();
+  for (const auto& test: tests)
+    if(!test())
+      return false;
 
-    delete[] field;
-    std::cout << "All tests passed!\n";
-    return true;
-  }
-  catch (std::bad_alloc const&) {
-    std::cerr << "Can't allocate memory\n";
-  }
-  catch (const TestException& e) {
-    std::cerr << "TestException: "
-              << e.what() << std::endl;
-  }
-  catch (const std::exception& e) {
-    std::cerr << "Exception: "
-              << e.what() << std::endl;
-  }
-
-  delete[] field;
-  return false;
+  delete[] test_field;
+  std::cout << "All tests passed!\n";
+  return true;
 }
 
-void test_select_mode() {
+bool test_select_mode() {
   std::cout << "Running Test Select mode\n";
 
-  std::istringstream iss("12\n\
-2\n\
-abracodabre6,\n\
-77\n\n");
+  std::freopen("select_mode_assets.txt", "r", stdin);
 
-  size_t lines = 5;
-  std::cin.rdbuf(iss.rdbuf());
-
-  while (--lines)
-    if (!select_mode())
-      throw TestException("\nSelection player "
-                          "mode failed");
+  while (!std::cin.eof())
+    if (!select_mode()) {
+      test_error_code(1);
+      return false;
+    }
 
   std::cout << std::endl;
+  std::fclose(stdin);
+  return true;
 }
 
-void test_get_number() {
+bool test_read_step() {
   std::cout << "Running Test Get number\n";
 
-  std::istringstream iss("12\n\
-2\n\
-57abracodabre6,\n0asd\n\
-77\n");
+  std::freopen("read_step_assets.txt", "r", stdin);
 
-  size_t lines = 5;
-  std::cin.rdbuf(iss.rdbuf());
-
-  while (--lines)
-    if (!get_number())
-      throw TestException("Getting non-zero "
-                          "value failed");
+  while (!std::cin.eof())
+    if (!read_step("Test")){
+      test_error_code(2);
+      return false;
+    }
+  
+  std::fclose(stdin);
+  return true;
 }
 
-void test_check_win_state() {
+bool test_check_win_state() {
   std::cout << "Running Test Check "
             << "winner state\n";
 
@@ -98,53 +78,62 @@ void test_check_win_state() {
   fields[7][2] = fields[7][4] =
     fields[7][6] = Cell::X;
 
-  for (const auto& f : fields)
-    if (!check_win_state((Field)f))
-      throw TestException("Detecting winner "
-                          "state failed");
+  for (const auto& f : fields) {
+    set_field((Field)f);
+    if (!check_win_state()){
+      test_error_code(3);
+      return false;
+    }
+  }
+  
+  return true;
 }
 
-void test_check_cell() {
+bool test_make_step() {
   std::cout << "Running Test Check cell\n";
 
-  reset_field(field);
+  reset_field(test_field);
+  set_field((Field)test_field);
+  
   for (size_t i = 0; i < 9; i++) {
-    if (!check_cell(field, i))
-      throw TestException("Check empty "
-                          "cell failed");
+    if (!make_step(i, Cell::X)){
+      test_error_code(4);
+      return false;
+    }
 
-    field[i] = Cell::X;
+    make_step(i, Cell::Unused);
 
-    if (check_cell(field, i))
-      throw TestException("Check used "
-                          "cell failed");
+    if (make_step(i, Cell::X)){
+      test_error_code(5);
+      return false;
+    }
   }
 
   std::srand(std::time(0));
   for (size_t i = 0; i < 0xFFFFULL; i++) {
-    field[i % 8] = (rand() % 2) ?
+    test_field[i % 8] = (rand() % 2) ?
                       Cell::X : Cell::Unused;
 
-    if (check_cell(field, 8 + rand() % 0xFFF8))
-      throw TestException("Check random "
-                          "cell failed");
+    if (make_step(8 + rand() % 0xFFF8, Cell::X)){
+      test_error_code(6);
+      return false;
+    }
   }
+  
+  return true;
 }
 
-void test_computer_step() {
+bool test_computer_step() {
   std::cout << "Running Test Computer step\n";
 
   unsigned short step;
   for (size_t i = 0; i < 100000; i++) {
-    reset_field(field);
-    
-    step = computer_step(field);
-    if (step >= 9 && check_cell(field, step))
-      throw TestException("Computer step "
-                          "greater 9 failed");
-
-    if (step < 9 && !check_cell(field, step))
-      throw TestException("Computer step "
-                          "less 9 failed");
+    step = computer_step();
+    if (step >= 9){
+      test_error_code(7);
+      return false;
+    }
   }
+
+  return true;
 }

@@ -38,6 +38,10 @@ bool make_step(const unsigned short cell_number,
     return false;
 }
 
+void set_field(Field new_field) {
+  field = new_field;
+}
+
 Field get_field() {
   return field;
 }

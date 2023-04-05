@@ -12,7 +12,7 @@ int main() {
   while (mode > 9) {
     mode = select_mode();
     if (mode > 9)
-      call_error_code(2);
+      game_error_code(2);
   }
 
   bool player = false;
@@ -38,7 +38,7 @@ int main() {
     else {
       cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1;
       while(!make_step(cell_n, (!player ? Cell::X : Cell::O)))
-        call_error_code(1);
+        game_error_code(1);
     }
 
     player = !player;

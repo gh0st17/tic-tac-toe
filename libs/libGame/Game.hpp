@@ -30,6 +30,11 @@ bool make_step(const unsigned short cell_number,
                const Cell cell_value);
 
 /** 
+* @brief Устанавливает поле
+*/
+void set_field(Field new_field);
+
+/** 
 * @brief Возвращает поле
 * @return Поле
 */
