@@ -90,7 +90,7 @@ bool test_check_win_state() {
 }
 
 bool test_make_step() {
-  std::cout << "Running Test Check cell\n";
+  std::cout << "Running Test Make step\n";
 
   reset_field(test_field);
   set_field((Field)test_field);
@@ -100,8 +100,6 @@ bool test_make_step() {
       test_error_code(4);
       return false;
     }
-
-    make_step(i, Cell::Unused);
 
     if (make_step(i, Cell::X)){
       test_error_code(5);

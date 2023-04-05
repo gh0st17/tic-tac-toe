@@ -16,7 +16,7 @@ void print_field();
 * @brief Выбор пользователем режима игры
 * @return true или false
 */
-unsigned select_mode();
+unsigned short select_mode();
 
 /**
 * @brief Ввод клетки
@@ -30,3 +30,9 @@ unsigned short read_step(const char* name);
 * @param error_str Текст ошибки
 */
 void print_error(const char* error_str);
+
+/**
+* @brief Вывод имени победителя
+* @param winner Имя победителя
+*/
+void print_winner(const char* winner);

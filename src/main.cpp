@@ -7,19 +7,15 @@
 
 int main() {
   print_manual();
-
-  unsigned mode = 10;
+  bool player = false;
+  std::srand(std::time(0U));
+  init_field();
+  unsigned short cell_n, steps_count = 0, mode = 10;
   while (mode > 9) {
     mode = select_mode();
     if (mode > 9)
       game_error_code(2);
   }
-
-  bool player = false;
-  std::srand(std::time(0U));
-  init_field();
-
-  unsigned short cell_n, steps_count = 0;
 
   auto print = []() {
 #ifdef _WIN64
@@ -28,17 +24,20 @@ int main() {
     system("clear");
 #endif
     print_field();
-    std::cout << std::endl;
   };
 
   print();
   while (!check_win_state() && steps_count++ < 9U) {
     if (!mode && !player)
-      while(!make_step(cell_n = computer_step(), Cell::X));
+      while (!make_step(cell_n = computer_step(), Cell::X));
     else {
-      cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1;
-      while(!make_step(cell_n, (!player ? Cell::X : Cell::O)))
-        game_error_code(1);
+      while (true) {
+        cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1;
+        if (!make_step(cell_n, (!player ? Cell::X : Cell::O)))
+          game_error_code(1);
+        else
+          break;
+      }
     }
 
     player = !player;
@@ -46,10 +45,11 @@ int main() {
   }
 
   if (check_win_state())
-    std::cout << (!player ? "(0)" :
-      (!mode ? "Computer(X)" : "(X)")) << " win!\n";
-  else if (steps_count == 10)
-    std::cout << "N/A win!\n";
+    (!player ? print_winner("(0)") :
+      (!mode ? print_winner("Computer(X)") :
+        print_winner("(X)")));
+  else
+    print_winner("N/A");
 
   destroy_field();
   return 0;

@@ -25,9 +25,11 @@ void print_field() {
     if ((i + 1) % 3 == 0)
       std::cout << std::endl;
   }
+
+  std::cout << std::endl;
 }
 
-unsigned select_mode() {
+unsigned short select_mode() {
   char ch = 0;
 
   std::cout << "Enter 0 for play with computer or "
@@ -61,4 +63,8 @@ unsigned short read_step(const char* name) {
 void print_error(const char* error_str) {
   std::cout << "An error occured: "
             << error_str << std::endl;
+}
+
+void print_winner(const char* winner) {
+  std::cout << winner << " win!\n";
 }
