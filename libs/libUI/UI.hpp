@@ -20,11 +20,13 @@ unsigned select_mode();
 
 /**
 * @brief Ввод клетки
+* @param name Имя игрока
 * @return Номер клетки
 */
 unsigned short read_step(const char* name);
 
 /**
 * @brief Вывод сообщения об ошибке
+* @param error_str Текст ошибки
 */
 void print_error(const char* error_str);

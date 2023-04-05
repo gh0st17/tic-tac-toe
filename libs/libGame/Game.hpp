@@ -36,9 +36,11 @@ bool make_step(const unsigned short cell_number,
 Field get_field();
 
 /** 
-* @brief Возвращает поле
-* @return Поле
+* @brief Создает поле
 */
 void init_field();
 
+/** 
+* @brief Удаляет поле
+*/
 void destroy_field();

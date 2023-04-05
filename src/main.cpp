@@ -12,7 +12,7 @@ int main() {
   while (mode > 9) {
     mode = select_mode();
     if (mode > 9)
-      call_error_code(3);
+      call_error_code(2);
   }
 
   bool player = false;
@@ -35,9 +35,11 @@ int main() {
   while (!check_win_state() && steps_count++ < 9U) {
     if (!mode && !player)
       while(!make_step(cell_n = computer_step(), Cell::X));
-    else
-      while(!make_step(cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1, (!player ? Cell::X : Cell::O)))
+    else {
+      cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1;
+      while(!make_step(cell_n, (!player ? Cell::X : Cell::O)))
         call_error_code(1);
+    }
 
     player = !player;
     print();
