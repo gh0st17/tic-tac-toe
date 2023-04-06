@@ -32,8 +32,13 @@ int main() {
       while (!make_step(cell_n = computer_step(), Cell::X));
     else {
       while (true) {
-        cell_n = read_step(!player ? "Player(X)" : "Player(0)") - 1;
-        if (!make_step(cell_n, (!player ? Cell::X : Cell::O)))
+        cell_n = read_step(!player ? "Player(X)" : "Player(0)");
+        if (!cell_n) {
+          game_error_code(3);
+          continue;
+        }
+
+        if (!make_step(cell_n - 1, (!player ? Cell::X : Cell::O)))
           game_error_code(1);
         else
           break;

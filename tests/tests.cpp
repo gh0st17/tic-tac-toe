@@ -8,6 +8,7 @@ void reset_field(Field test_field) {
 };
 
 bool run_all_tests() {
+  std::srand(std::time(0U));
   test_field = new Cell[9]();
   bool (*tests[])() = {
     test_select_mode, test_read_step, 
@@ -27,11 +28,34 @@ bool run_all_tests() {
 bool test_select_mode() {
   std::cout << "Running Test Select mode\n";
 
-  std::freopen("select_mode_assets.txt", "r", stdin);
+  std::cin.clear();
+  if (!std::freopen("sel_mode_correct.txt", "r", stdin)) {
+    test_error_code(8);
+    return false;
+  }
 
-  while (!std::cin.eof())
-    if (!select_mode()) {
+  while (std::cin.peek() != '\n')
+    if (select_mode() > 9) {
+      std::cout << std::endl;
       test_error_code(1);
+      std::fclose(stdin);
+      return false;
+    }
+
+  std::cout << std::endl;
+  std::fclose(stdin);
+
+  std::cin.clear();
+  if (!std::freopen("sel_mode_incorrect.txt", "r", stdin)) {
+    test_error_code(8);
+    return false;
+  }
+
+  while (std::cin.peek() != '\n')
+    if (select_mode() < 10) {
+      std::cout << std::endl;
+      test_error_code(1);
+      std::fclose(stdin);
       return false;
     }
 
@@ -43,14 +67,35 @@ bool test_select_mode() {
 bool test_read_step() {
   std::cout << "Running Test Read step\n";
 
-  std::freopen("read_step_assets.txt", "r", stdin);
-
+  std::cin.clear();
+  if (!std::freopen("rd_step_correct.txt", "r", stdin)) {
+    test_error_code(8);
+    return false;
+  }
+    
   while (!std::cin.eof())
     if (!read_step("Test")){
+      std::cout << std::endl;
       test_error_code(2);
       return false;
     }
   
+  std::fclose(stdin);
+
+  std::cin.clear();
+  if (!std::freopen("rd_step_incorrect.txt", "r", stdin)) {
+    test_error_code(8);
+    return false;
+  }
+  
+  while (!std::cin.eof())
+    if (read_step("Test")){
+      std::cout << std::endl;
+      test_error_code(2);
+      return false;
+    }
+  
+  std::cout << std::endl;
   std::fclose(stdin);
   return true;
 }
@@ -109,9 +154,6 @@ bool test_make_step() {
 
   std::srand(std::time(0));
   for (size_t i = 0; i < 0xFFFFULL; i++) {
-    test_field[i % 8] = (rand() % 2) ?
-                      Cell::X : Cell::Unused;
-
     if (make_step(8 + rand() % 0xFFF8, Cell::X)){
       test_error_code(6);
       return false;

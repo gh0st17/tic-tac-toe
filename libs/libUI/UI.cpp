@@ -35,6 +35,7 @@ unsigned short select_mode() {
   std::cout << "Enter 0 for play with computer or "
             << "any digit for play in two players mode: ";
   std::cin >> ch;
+
   if (!std::isdigit(ch))
     return 10;
   else
@@ -44,19 +45,19 @@ unsigned short select_mode() {
 unsigned short read_step(const char* name) {
   std::cout << "Player " << name << " moves: ";
 
+  unsigned short tmp = 0;
   auto clear = []() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   };
 
-  unsigned short tmp = 0;
+  clear();
   while (true) {
     if (std::cin >> tmp && tmp > 0)
       break;
     else
-      clear();
+      return 0;
   }
-  clear();
   return tmp;
 }
 

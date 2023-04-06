@@ -20,12 +20,11 @@ CXXFLAGS := -std=c++11 -Wall
 
 .PHONY: clean clean_dSYM release debug tests done
 
-release: CXXFLAGS += -Ofast -flto=full
+release: CXXFLAGS += -Ofast
 release: $(TARGET) clean clean_dSYM done
 debug: CXXFLAGS += -O0 -g -fsanitize=address
 debug: DBG := -debug
 debug: $(TARGET) clean_dSYM $(TARGET).dSYM clean done
-test: CXXFLAGS += -flto=full
 test: $(TARGET)-test
 
 $(TARGET): $(LIB_FILENAMES) $(OBJ_FILES)
