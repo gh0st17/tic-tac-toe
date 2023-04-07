@@ -6,7 +6,8 @@ on:
     paths:
       - '**.cpp'
       - '**.hpp'
-      - './Makefile'
+      - '**Makefile'
+      - '.github/workflows/makefile.yml'
 
 jobs:
   build_macos:
