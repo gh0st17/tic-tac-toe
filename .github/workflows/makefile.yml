@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Fix ar
-        run: sed -i '' "s/llvm-ar/ar/g" Makefile
+        run: sed -i 's/llvm-ar/ar/g' Makefile
 
       - name: Make
         run: make
