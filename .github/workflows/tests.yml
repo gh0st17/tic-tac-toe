@@ -16,7 +16,10 @@ jobs:
       
       - name: Make tests
         run: make test
-      
+
+      - name: Copy assets
+        run: cp ./tests/*.txt ./
+
       - name: Runing tests
         run: ./tictactoe-test
 
@@ -28,6 +31,9 @@ jobs:
       
       - name: Make tests
         run: make test
-      
+
+      - name: Copy assets
+        run: cp ./tests/*.txt ./
+
       - name: Runing tests
         run: ./tictactoe-test
