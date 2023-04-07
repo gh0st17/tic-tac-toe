@@ -2,7 +2,7 @@ TARGET := libAI
 
 CC := clang++
 AR := llvm-ar
-CXXFLAGS := -std=c++11 -Wall
+CXXFLAGS := -Wall
 
 .PHONY: clean
 

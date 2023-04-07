@@ -10,16 +10,15 @@ TESTS_DIRS := $(wildcard $(TESTS_DIR)/testlibs/*/) $(TESTS_DIR)
 
 CC := clang++
 AR := llvm-ar
-CXXFLAGS := -std=c++11 -Wall
+CXXFLAGS := -Wall
 
-.PHONY: clean libs all $(LIB_DIRS) $(TESTS_DIRS)
+.PHONY: clean all $(LIB_DIRS) $(TESTS_DIRS)
 
 all: $(LIB_DIRS) $(TESTS_DIRS) main.o
 	$(CC) $(CXXFLAGS) *.a $(TESTS_DIR)/*.a $(TESTS_DIR)/main.o -o $(TARGET)-test
 	./$(TARGET)-test && $(CC) $(CXXFLAGS) *.a main.o -o $(TARGET)
 
 $(TESTS_DIRS):
-	$(info "$@")
 	$(MAKE) -C $@
 
 $(LIB_DIRS):
