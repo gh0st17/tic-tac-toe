@@ -1,5 +1,18 @@
-#include "tests.hpp"
+#include "testlibs/libtestUI/UI_test.hpp"
+#include "testlibs/libtestAI/AI_test.hpp"
+#include "testlibs/libtestGame/game_test.hpp"
 
 int main() {
-  return !run_all_tests();
+  bool (*tests[])() = {
+    test_select_mode, test_read_step, 
+    test_check_win_state, test_make_step,
+    test_computer_step
+  };
+
+  for (const auto& test: tests)
+    if(!test())
+      return 1;
+
+  std::cout << "All tests passed!\n";
+  return 0;
 }

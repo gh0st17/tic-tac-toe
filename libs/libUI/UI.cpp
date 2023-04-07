@@ -52,13 +52,11 @@ unsigned short read_step(const char* name) {
   };
 
   clear();
-  while (true) {
+  while (true)
     if (std::cin >> tmp && tmp > 0)
-      break;
+      return tmp;
     else
       return 0;
-  }
-  return tmp;
 }
 
 void print_error(const char* error_str) {
