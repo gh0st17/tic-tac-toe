@@ -2,7 +2,7 @@ TARGET := main.o
 
 CC := clang++
 AR := llvm-ar
-CXXFLAGS := -Wall
+CXXFLAGS := -std=c++11 -Wall
 
 .PHONY: clean
 
