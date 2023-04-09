@@ -35,4 +35,4 @@ jobs:
         run: cp ./tests/*.txt ./
 
       - name: Make
-        run: cmd.exe /C mingw32-make EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
+        cmd: mingw32-make EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
