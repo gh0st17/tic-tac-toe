@@ -30,14 +30,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
       
       - name: Copy assets
         run: cp ./tests/*.txt ./
 
       - name: Make
-        run: mingw32-make CXXFLAGS="-std=c++14 -Wall" EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
+        run: mingw32-make EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
