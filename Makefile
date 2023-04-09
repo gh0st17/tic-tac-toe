@@ -47,17 +47,9 @@ endif
 main.o: $(SRC_DIR)/main.cpp
 	$(CC) $(CXXFLAGS) -c $<
 
-ifdef OS
-clean: LIB_DIRS_2 := $(subst /,\,$(LIB_DIRS))
-clean: LIB_DIRS_2 := $(patsubst %,$(MAKE) -C % clean SLASH=\ AR_EXT=lib RM="del /q";,$(LIB_DIRS_2))
-clean: TESTS_DIRS_2 := $(subst /,\,$(TESTS_DIRS))
-endif
 clean:
 ifdef OS
-	@echo $(LIB_DIRS_2)
-	$(LIB_DIRS_2)
-	$(foreach dir, $(TESTS_DIRS), $(MAKE) -C $(dir) clean SLASH=\ AR_EXT=lib RM="del /q";)
-	del /q main.o
+	del /q /s *.o *.lib
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
 	$(foreach dir, $(TESTS_DIRS) $(TESTS_DIR), $(MAKE) -C $(dir) clean;)
