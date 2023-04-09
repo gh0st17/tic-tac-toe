@@ -24,3 +24,18 @@ jobs:
 
       - name: Make
         run: make
+
+  build_windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1.3
+      
+      - name: Copy assets
+        run: cp ./tests/*.txt ./
+
+      - name: Make
+        run: mingw32-make CXXFLAGS="-std=c++14 -Wall" EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
