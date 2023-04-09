@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "../../../libs/libGame/Game.hpp"
 #include "../../../libs/libError/Error.hpp"
 

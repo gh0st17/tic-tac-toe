@@ -2,15 +2,18 @@ TARGET := libtestGame
 
 CC := clang++
 AR := llvm-ar
+SLASH = /
+RM = rm -f
+AR_EXT := a
 CXXFLAGS := -std=c++11 -Wall
 
 .PHONY: clean
 
-../$(TARGET).a: $(TARGET).o
+../$(TARGET).$(AR_EXT): $(TARGET).o
 	$(AR) crs $@ $<
 
 $(TARGET).o: game_test.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $(TARGET).o
 
 clean:
-	rm -f $(TARGET).o ../$(TARGET).a
+	$(RM) $(TARGET).o ..$(SLASH)$(TARGET).$(AR_EXT)
