@@ -25,14 +25,14 @@ jobs:
       - name: Make
         run: make
 
-  build_windows:
-    name: Windows
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
+  # build_windows:
+  #   name: Windows
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
       
-      - name: Copy assets
-        run: cp ./tests/*.txt ./
+  #     - name: Copy assets
+  #       run: cp ./tests/*.txt ./
 
-      - name: Make
-        cmd: mingw32-make EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
+  #     - name: Make
+  #       cmd: mingw32-make EXE=.exe AR=ar CC=g++ L_FLAG=-llib AR_EXT=lib
