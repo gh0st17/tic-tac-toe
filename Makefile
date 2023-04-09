@@ -3,6 +3,7 @@ TARGET := tictactoe
 SRC_DIR := ./src
 
 L_FLAG := -l
+SLASH := /
 
 LIB_DIR := ./libs
 LIB_DIRS := $(sort $(dir $(wildcard $(LIB_DIR)/*/*/)))
@@ -24,7 +25,7 @@ all: $(LIB_DIRS) $(TESTS_DIRS) main.o $(TESTS_DIR)/main.o
 -L$(LIB_DIR) -L$(TESTS_DIR)/testlibs/ \
 $(LIB_FLAGS) $(TESTS_FLAGS) \
 $(TESTS_DIR)/main.o -o $(TARGET)-test$(EXE)
-	$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) -L$(LIB_DIR) $(LIB_FLAGS) main.o -o $(TARGET)$(EXE)
+	.$(SLASH)$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) -L$(LIB_DIR) $(LIB_FLAGS) main.o -o $(TARGET)$(EXE)
 
 $(TESTS_DIRS):
 ifdef OS
@@ -59,6 +60,6 @@ ifdef OS
 	del /q main.o
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
-	$(foreach dir, $(TESTS_DIRS), $(MAKE) -C $(dir) clean;)
+	$(foreach dir, $(TESTS_DIRS) $(TESTS_DIR), $(MAKE) -C $(dir) clean;)
 	rm -f main.o
 endif
