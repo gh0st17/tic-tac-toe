@@ -1,35 +1,37 @@
 TARGET := tictactoe
 
 SRC_DIR := ./src
+L_FLAG  := -l
 
-L_FLAG := -l
-SLASH := /
-
-LIB_DIR := ./libs
-LIB_DIRS := $(sort $(dir $(wildcard $(LIB_DIR)/*/*/)))
+LIB_DIR   := ./libs
+LIB_DIRS  := $(sort $(dir $(wildcard $(LIB_DIR)/*/*/)))
 LIB_NAMES := $(patsubst $(LIB_DIR)/lib%/,%,$(LIB_DIRS))
-LIB_FLAGS := $(patsubst %, $(L_FLAG)%, $(LIB_NAMES))
+LIB_FLAGS := $(patsubst %,$(L_FLAG)%,$(LIB_NAMES))
 
-TESTS_DIR := ./tests
-TESTS_DIRS := $(sort $(dir $(wildcard $(TESTS_DIR)/testlibs/*/*/)))
+TESTS_DIR   := ./tests
+TESTS_DIRS  := $(sort $(dir $(wildcard $(TESTS_DIR)/testlibs/*/*/)))
 TESTS_NAMES := $(patsubst $(TESTS_DIR)/testlibs/lib%/,%,$(TESTS_DIRS))
-TESTS_FLAGS := $(patsubst %, $(L_FLAG)%, $(TESTS_NAMES))
+TESTS_FLAGS := $(patsubst %,$(L_FLAG)%,$(TESTS_NAMES))
 
 CC := clang++
 CXXFLAGS := -std=c++11 -Wall
 
 .PHONY: clean all $(LIB_DIRS) $(TESTS_DIRS)
-
-all: $(LIB_DIRS) $(TESTS_DIRS) main.o $(TESTS_DIR)/main.o 
-	$(CC) $(CXXFLAGS) \
--L$(LIB_DIR) -L$(TESTS_DIR)/testlibs/ \
-$(LIB_FLAGS) $(TESTS_FLAGS) \
-$(TESTS_DIR)/main.o -o $(TARGET)-test$(EXE)
-	.$(SLASH)$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) -L$(LIB_DIR) $(LIB_FLAGS) main.o -o $(TARGET)$(EXE)
+all: $(ifneq )
+all: clean $(LIB_DIRS) $(TESTS_DIRS) main.o $(TESTS_DIR)/main.o 
+	$(CC) $(CXXFLAGS) $(TESTS_DIR)/main.o \
+-L$(TESTS_DIR)/testlibs/ $(TESTS_FLAGS) \
+-L$(LIB_DIR) $(LIB_FLAGS) \
+-o $(TARGET)-test$(EXE)
+ifdef OS
+	.\$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
+else
+	./$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
+endif
 
 $(TESTS_DIRS):
 ifdef OS
-	$(MAKE) -C $@ AR_EXT=lib
+	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
 else
 	$(MAKE) -C $@
 endif
@@ -39,7 +41,7 @@ $(TESTS_DIR)/main.o: $(TESTS_DIR)/main.cpp
 
 $(LIB_DIRS):
 ifdef OS
-	$(MAKE) -C $@ AR_EXT=lib
+	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
 else
 	$(MAKE) -C $@
 endif
@@ -49,7 +51,7 @@ main.o: $(SRC_DIR)/main.cpp
 
 clean:
 ifdef OS
-	del /q /s *.o *.lib
+	del /q /s *.o *.lib *.a
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
 	$(foreach dir, $(TESTS_DIRS) $(TESTS_DIR), $(MAKE) -C $(dir) clean;)
