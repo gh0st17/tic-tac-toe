@@ -1,6 +1,6 @@
-#include "testlibs/libtestUI/UI_test.hpp"
-#include "testlibs/libtestAI/AI_test.hpp"
-#include "testlibs/libtestGame/game_test.hpp"
+#include "../testlibs/libtestUI/UI_test.hpp"
+#include "../testlibs/libtestAI/AI_test.hpp"
+#include "../testlibs/libtestGame/game_test.hpp"
 
 int main() {
   bool (*tests[])() = {

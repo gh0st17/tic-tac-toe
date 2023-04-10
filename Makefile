@@ -2,49 +2,37 @@ TARGET := tictactoe
 
 SRC_DIR := ./src
 L_FLAG  := -l
+AR_EXT  := a
 
 LIB_DIR   := ./libs
 LIB_DIRS  := $(sort $(dir $(wildcard $(LIB_DIR)/*/*/)))
 LIB_NAMES := $(patsubst $(LIB_DIR)/lib%/,%,$(LIB_DIRS))
 LIB_FLAGS := $(patsubst %,$(L_FLAG)%,$(LIB_NAMES))
 
-TESTS_DIR   := ./tests
-TESTS_DIRS  := $(sort $(dir $(wildcard $(TESTS_DIR)/testlibs/*/*/)))
-TESTS_NAMES := $(patsubst $(TESTS_DIR)/testlibs/lib%/,%,$(TESTS_DIRS))
-TESTS_FLAGS := $(patsubst %,$(L_FLAG)%,$(TESTS_NAMES))
-
 CC := clang++
+AR := llvm-ar
 CXXFLAGS := -std=c++11 -Wall
 
 .PHONY: clean all $(LIB_DIRS) $(TESTS_DIRS)
-all: $(ifneq )
-all: clean $(LIB_DIRS) $(TESTS_DIRS) main.o $(TESTS_DIR)/main.o 
-	$(CC) $(CXXFLAGS) $(TESTS_DIR)/main.o \
--L$(TESTS_DIR)/testlibs/ $(TESTS_FLAGS) \
--L$(LIB_DIR) $(LIB_FLAGS) \
--o $(TARGET)-test$(EXE)
+
+all: clean $(LIB_DIRS) main.o $(TESTS_DIR)/$(TARGET)-test
 ifdef OS
-	.\$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
+	cd .\tests && .\$(TARGET)-test$(EXE) && cd .. && \
+$(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 else
-	./$(TARGET)-test$(EXE) && $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
+	cd ./tests && ./$(TARGET)-test$(EXE) && cd .. && \
+$(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 endif
 
-$(TESTS_DIRS):
+$(TESTS_DIR)/$(TARGET)-test:
 ifdef OS
-	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
+	$(MAKE) -C .\tests AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) L_FLAG=$(L_FLAG)
 else
-	$(MAKE) -C $@
+	$(MAKE) -C ./tests AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) L_FLAG=$(L_FLAG)
 endif
-
-$(TESTS_DIR)/main.o: $(TESTS_DIR)/main.cpp
-	$(CC) $(CXXFLAGS) -c $< -o $@
 
 $(LIB_DIRS):
-ifdef OS
 	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
-else
-	$(MAKE) -C $@
-endif
 
 main.o: $(SRC_DIR)/main.cpp
 	$(CC) $(CXXFLAGS) -c $<
@@ -54,6 +42,6 @@ ifdef OS
 	del /q /s *.o *.lib *.a
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
-	$(foreach dir, $(TESTS_DIRS) $(TESTS_DIR), $(MAKE) -C $(dir) clean;)
 	rm -f main.o
+	$(MAKE) -C ./tests clean
 endif
