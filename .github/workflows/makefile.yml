@@ -16,14 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Fix ar
-        run: find . -name Makefile -exec sed -i '' "s/llvm-ar/ar/g" {} +
-      
-      - name: Copy assets
-        run: cp ./tests/*.txt ./
-
       - name: Make
-        run: make
+        run: make AR=ar
 
   # build_windows:
   #   name: Windows
