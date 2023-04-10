@@ -13,7 +13,7 @@ CC := clang++
 AR := llvm-ar
 CXXFLAGS := -std=c++11 -Wall
 
-.PHONY: clean all $(LIB_DIRS) $(TESTS_DIRS)
+.PHONY: clean all $(LIB_DIRS)
 
 all: clean $(LIB_DIRS) main.o $(TESTS_DIR)/$(TARGET)-test
 ifdef OS

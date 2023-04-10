@@ -21,7 +21,7 @@ CXXFLAGS := -std=c++11 -Wall
 
 all: clean $(TESTS_DIRS) main.o
 	$(CC) $(CXXFLAGS) main.o \
--L./testlibs/ $(TESTS_FLAGS) \
+-L./testlibs $(TESTS_FLAGS) \
 -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 
 $(TESTS_DIRS):

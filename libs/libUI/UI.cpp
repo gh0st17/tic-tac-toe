@@ -60,7 +60,7 @@ unsigned short read_step(const char* name) {
 }
 
 void print_error(const char* error_str) {
-  std::cout << "An error occured: "
+  std::cout << "An error occurred: "
             << error_str << std::endl;
 }
 
