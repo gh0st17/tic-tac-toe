@@ -53,7 +53,7 @@ unsigned short read_step(const char* name) {
 
   clear();
   while (true)
-    if (std::cin >> tmp && tmp > 0)
+    if (std::cin >> tmp && tmp)
       return tmp;
     else
       return 0;

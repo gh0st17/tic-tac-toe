@@ -61,7 +61,7 @@ bool test_make_step() {
     }
   }
 
-  for (size_t i = 0; i < 0xFFFFULL; i++) {
+  for (size_t i = 0; i < 100000; i++) {
     if (make_step(8 + rand() % 0xFFF8, Cell::X)){
       test_error_code(6);
       delete[] test_field;
