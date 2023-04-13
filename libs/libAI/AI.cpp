@@ -15,7 +15,7 @@ unsigned short generate_move(Field field) {
 
   // Если нет выигрышных ходов, блокируем ходы соперника
   if (move == 9)
-    for (int i = 0; i < 9 && move > 8; ++i)
+    for (unsigned short i = 0; i < 9 && move > 8; ++i)
       if (test_step(i, Cell::O)) // Предполагаемый ход соперника
         move = i;
 
