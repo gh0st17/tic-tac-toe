@@ -2,10 +2,9 @@
 
 /** 
 * @brief Функция для генерации хода компьютером
-* @param field Игровое поле
 * @return Ход компьютера
 */
-unsigned short generate_move(Field field) {
+unsigned short generate_move() {
   unsigned short move = 9;
 
   // Проверяем, есть ли выигрышные ходы
@@ -27,5 +26,5 @@ unsigned short generate_move(Field field) {
 }
 
 unsigned short computer_step() {
-  return generate_move(get_field());
+  return generate_move();
 }
