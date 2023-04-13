@@ -1,4 +1,5 @@
 #pragma once
+#include "../libGame/Game.hpp"
 #include <iostream>
 #include <random>
 
