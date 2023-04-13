@@ -5,7 +5,7 @@
 * @param field Игровое поле
 * @return Ход компьютера
 */
-unsigned short generateMove(Field field) {
+unsigned short generate_move(Field field) {
   unsigned short move = 10;
 
   // Проверяем, есть ли выигрышные ходы
@@ -43,5 +43,5 @@ unsigned short generateMove(Field field) {
 }
 
 unsigned short computer_step() {
-  return generateMove(get_field());
+  return generate_move(get_field());
 }
