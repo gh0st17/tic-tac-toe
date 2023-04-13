@@ -38,6 +38,18 @@ bool make_step(const unsigned short cell_number,
     return false;
 }
 
+bool test_step(const unsigned short cell_number,
+               const Cell cell_value) {
+  if (field[cell_number] == Cell::Unused) {
+    field[cell_number] = cell_value;
+    bool is_win = check_win_state();
+    field[cell_number] = Cell::Unused;
+    return is_win;
+  }
+
+  return false;
+}
+
 void set_field(Field new_field) {
   field = new_field;
 }

@@ -30,6 +30,16 @@ bool make_step(const unsigned short cell_number,
                const Cell cell_value);
 
 /** 
+* @brief Тест выбранной клетки на победу
+* @param cell_number Номер клетки в поле
+* @param cell_value Значение клетки
+* @return true если клетка не занята
+*         и в пределах поля, false - нет 
+*/
+bool test_step(const unsigned short cell_number,
+               const Cell cell_value);
+
+/** 
 * @brief Устанавливает поле
 */
 void set_field(Field new_field);
