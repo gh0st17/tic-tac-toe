@@ -20,7 +20,7 @@ ifdef OS
 	cd .\tests && .\$(TARGET)-test$(EXE) && cd .. && \
 $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 else
-	cd ./tests && ./$(TARGET)-test$(EXE) && cd .. && \
+	cd ./tests && ./$(TARGET)-test && cd .. && \
 $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 endif
 
