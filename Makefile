@@ -43,5 +43,4 @@ ifdef OS
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
 	rm -f main.o
-	$(MAKE) -C ./tests clean
 endif
