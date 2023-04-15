@@ -1,19 +1,6 @@
 #include <iostream>
-#include <random>
-#include <ctime>
 #include "../../../libs/libUI/UI.hpp"
 #include "../../../libs/libError/Error.hpp"
-
-/**
-* @brief Тест выбора режима
-* @details Из тестового файла в стандартный 
-*          поток ввода загружаются входные
-*          данные и запускается тестируемая
-*          функция
-*          Сначала тестируются корректные
-*          данные затем некорректные
-*/
-bool test_select_mode();
 
 /**
 * @brief Тест чтения числа > 0

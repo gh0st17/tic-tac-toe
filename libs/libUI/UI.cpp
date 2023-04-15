@@ -10,6 +10,10 @@ void print_manual() {
     if ((i + 1) % 3 == 0)
       std::cout << std::endl;
   }
+
+  std::cout << "\nRun program with 'AI' parameter "
+            << "to start\nin AI mode or 'Player' "
+            << "for two players mode\n";
 }
 
 void print_field() {
@@ -29,34 +33,20 @@ void print_field() {
   std::cout << std::endl;
 }
 
-unsigned short select_mode() {
-  char ch = 0;
-
-  std::cout << "Enter 0 for play with computer or "
-            << "any digit for play in two players mode: ";
-  std::cin >> ch;
-
-  if (!std::isdigit(ch))
-    return 10;
-  else
-    return (ch - 48);
-}
-
 unsigned short read_step(const char* name) {
   std::cout << "Player " << name << " moves: ";
 
   unsigned short tmp = 0;
-  auto clear = []() {
+
+  if (std::cin.fail()){
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  };
-
-  clear();
-  while (true)
-    if (std::cin >> tmp && tmp)
-      return tmp;
-    else
-      return 0;
+  }
+  
+  if (std::cin >> tmp && tmp)
+    return tmp;
+  else
+    return 0;
 }
 
 void print_error(const char* error_str) {

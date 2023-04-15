@@ -31,7 +31,7 @@ bool test_check_win_state() {
   for (const auto& f : fields) {
     set_field((Field)f);
     if (!check_win_state()){
-      test_error_code(3);
+      test_error_code(TestError::DETECT_WINNER);
       return false;
     }
   }
@@ -42,28 +42,30 @@ bool test_check_win_state() {
 bool test_make_step() {
   std::cout << "Running Test Make step\n";
 
-  std::srand(std::time(0U));
   Field test_field = new Cell[9]();
   reset_field(test_field);
   set_field((Field)test_field);
   
   for (size_t i = 0; i < 9; i++) {
     if (!make_step(i, Cell::X)){
-      test_error_code(4);
+      test_error_code(TestError::CHK_EMPTY_CELL);
       delete[] test_field;
       return false;
     }
 
     if (make_step(i, Cell::X)){
-      test_error_code(5);
+      test_error_code(TestError::CHK_USED_CELL);
       delete[] test_field;
       return false;
     }
   }
 
+  std::random_device rd;
+  std::mt19937 mt(rd());
+  std::uniform_int_distribution<unsigned short> dist(0, 0xFFF8);
   for (size_t i = 0; i < 100000; i++) {
-    if (make_step(8 + rand() % 0xFFF8, Cell::X)){
-      test_error_code(6);
+    if (make_step(8 + dist(mt), Cell::X)){
+      test_error_code(TestError::CHK_RND_CELL);
       delete[] test_field;
       return false;
     }

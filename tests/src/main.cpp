@@ -4,9 +4,8 @@
 
 int main() {
   bool (*tests[])() = {
-    test_select_mode, test_read_step, 
-    test_check_win_state, test_make_step,
-    test_computer_step
+    test_read_step, test_check_win_state,
+    test_make_step, test_computer_step
   };
 
   for (const auto& test: tests)

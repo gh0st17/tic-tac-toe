@@ -13,12 +13,6 @@ void print_manual();
 void print_field();
 
 /**
-* @brief Выбор пользователем режима игры
-* @return true или false
-*/
-unsigned short select_mode();
-
-/**
 * @brief Ввод клетки
 * @param name Имя игрока
 * @return Номер клетки

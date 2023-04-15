@@ -39,8 +39,12 @@ unsigned short generate_move() {
         move = i;
 
   // Если нет выигрышных и блокирующих ходов, выбираем случайный ход
-  if (move == 9)
-    move = rand() % 9;
+  if (move == 9) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<unsigned short> dist(0, 8);
+    move = dist(mt);
+  }
 
   return move;
 }
