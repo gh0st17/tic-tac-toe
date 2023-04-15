@@ -8,7 +8,7 @@
 *         и в пределах поля, false - нет 
 */
 bool analize_step(const unsigned short cell_number,
-               const Cell cell_value, Field field) {
+                  const Cell cell_value, Field field) {
   if (field[cell_number] == Cell::Unused) {
     field[cell_number] = cell_value;
     bool is_win = check_win_state();
