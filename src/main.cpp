@@ -8,9 +8,9 @@ void run(bool mode);
 
 int main(int argc, const char* argv[]) {
   if (argc > 1) {
-    if (!strcmp(argv[1], "AI"))
+    if (std::string(argv[1]) == "AI")
       run(false);
-    else if (!strcmp(argv[1], "Player"))
+    else if (std::string(argv[1]) == "Player")
       run(true);
     else
       print_manual();
