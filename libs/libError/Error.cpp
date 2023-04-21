@@ -1,28 +1,32 @@
 #include "Error.hpp"
 
-void game_error_code(GameError code) {
-  if (code == GameError::CANT_MOVE_HERE)
+void game_error_code(int code) {
+  if (code == 1)
     print_error("Can't move here");
-  else if (code == GameError::INCORRECT_INPUT)
+  else if (code == 2)
+    print_error("It is not a digit");
+  else if (code == 3)
     print_error("Incorrect input");
   else
     print_error("Unknown error");
 }
 
-void test_error_code(TestError code) {
-  if (code == TestError::GET_NON_ZERO)
+void test_error_code(int code) {
+  if (code == 1)
+    print_error("Selection player mode failed");
+  else if (code == 2)
     print_error("Getting non-zero value failed");
-  else if (code == TestError::DETECT_WINNER)
+  else if (code == 3)
     print_error("Detecting winner state failed");
-  else if (code == TestError::CHK_EMPTY_CELL)
+  else if (code == 4)
     print_error("Check empty cell failed");
-  else if (code == TestError::CHK_USED_CELL)
+  else if (code == 5)
     print_error("Check used cell failed");
-  else if (code == TestError::CHK_RND_CELL)
+  else if (code == 6)
     print_error("Check random cell failed");
-  else if (code == TestError::COMPUTER_STEP)
+  else if (code == 7)
     print_error("Computer step failed");
-  else if (code == TestError::ASSET_FILE)
+  else if (code == 8)
     print_error("Can't open assets file");
   else
     print_error("Unknown error");
