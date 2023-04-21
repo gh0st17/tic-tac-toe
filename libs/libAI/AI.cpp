@@ -1,15 +1,15 @@
 #include "AI.hpp"
 
-short computer_step() {
+unsigned short computer_step() {
   Field field = get_field();
-  unsigned short step, free = 0, num = 0;
+  unsigned short step = 0, free = 0, num = 0;
 
   for (unsigned i = 0; i < 9; i++)
-    if (field[i] == Cell::Unused) {
+    if (field[i] == Cell::Unused)
       free++;
-    }
 
-  step = rand() % free;
+  if (free)
+    step = rand() % free;
 
   for (unsigned i = 0; i < 9; i++) {
     if (field[i] == Cell::Unused)
@@ -18,5 +18,5 @@ short computer_step() {
       return i;
   }
 
-  return -1;
+  return 9;
 }

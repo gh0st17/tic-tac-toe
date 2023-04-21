@@ -5,6 +5,7 @@
 
 /** 
 * @brief Генерация хода компьютеом
-* @return Номер клетки
+* @return 0-8 - Номер клетки;
+*  9 - На поле нет пустых ячеек
 */
-short computer_step();
+unsigned short computer_step();

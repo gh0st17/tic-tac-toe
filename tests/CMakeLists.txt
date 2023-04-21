@@ -9,6 +9,7 @@ if(BUILD_TESTS)
   add_subdirectory(testlibs/libtestUI)
   add_subdirectory(testlibs/libtestAI)
   add_subdirectory(testlibs/libtestGame)
+  add_subdirectory(testlibs/libtestError)
 
-  target_link_libraries(tictactoe-test UI AI Error Game testUI testAI testGame)
+  target_link_libraries(tictactoe-test UI AI Error Game testUI testAI testGame testError)
 endif()

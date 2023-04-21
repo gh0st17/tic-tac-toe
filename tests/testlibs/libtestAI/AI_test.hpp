@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../../../libs/libAI/AI.hpp"
+#include "../../../libs/libGame/Game.hpp"
 #include "../../../libs/libError/Error.hpp"
 
 /**

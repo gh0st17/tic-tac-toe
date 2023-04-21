@@ -28,8 +28,16 @@ int main() {
 
   print();
   while (!check_win_state() && steps_count++ < 9U) {
-    if (!mode && !player)
-      while (!make_step(cell_n = computer_step(), Cell::X));
+    if (!mode && !player) {
+      cell_n = computer_step();
+      if (cell_n == 9) {
+        game_error_code(4);
+        destroy_field();
+        exit(1);
+      }
+      
+      while (!make_step(cell_n, Cell::X));
+    }
     else {
       while (true) {
         cell_n = read_step(!player ? "Player(X)" : "Player(0)");
