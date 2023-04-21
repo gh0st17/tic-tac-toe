@@ -29,13 +29,11 @@ int main() {
   print();
   while (!check_win_state() && steps_count++ < 9U) {
     if (!mode && !player) {
-      cell_n = computer_step();
-      if (cell_n == 9) {
+      if ((cell_n = computer_step()) == 9) {
         game_error_code(4);
         destroy_field();
         exit(1);
       }
-      
       while (!make_step(cell_n, Cell::X));
     }
     else {
@@ -45,14 +43,12 @@ int main() {
           game_error_code(3);
           continue;
         }
-
         if (!make_step(cell_n - 1, (!player ? Cell::X : Cell::O)))
           game_error_code(1);
         else
           break;
       }
     }
-
     player = !player;
     print();
   }

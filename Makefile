@@ -21,7 +21,7 @@ ifdef OS
 $(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 else
 	cd ./tests && ./$(TARGET)-test && cd .. && \
-$(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
+$(CC) $(CXXFLAGS) main.o -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)
 endif
 
 $(TESTS_DIR)/$(TARGET)-test:
@@ -43,5 +43,4 @@ ifdef OS
 else
 	$(foreach dir, $(LIB_DIRS), $(MAKE) -C $(dir) clean;)
 	rm -f main.o
-	$(MAKE) -C ./tests clean
 endif
