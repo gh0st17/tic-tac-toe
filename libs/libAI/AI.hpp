@@ -7,4 +7,4 @@
 * @brief Генерация хода компьютеом
 * @return Номер клетки
 */
-unsigned short computer_step();
+short computer_step();
