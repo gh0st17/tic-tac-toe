@@ -23,9 +23,8 @@ bool analize_step(const unsigned short cell_number,
 * @brief Функция для генерации хода компьютером
 * @return Ход компьютера
 */
-unsigned short generate_move() {
+unsigned short generate_move(unsigned short free, Field field) {
   unsigned short move = 9;
-  Field field = get_field();
 
   // Проверяем, есть ли выигрышные ходы
   for (unsigned short i = 0; i < 9 && move > 8; ++i)
@@ -40,15 +39,35 @@ unsigned short generate_move() {
 
   // Если нет выигрышных и блокирующих ходов, выбираем случайный ход
   if (move == 9) {
+    unsigned short num = 0;
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<unsigned short> dist(0, 8);
+    std::uniform_int_distribution<unsigned short> dist(0, free - 1);
     move = dist(mt);
+
+    for (unsigned i = 0; i < 9; i++) {
+      if (field[i] == Cell::Unused)
+        num++;
+      if (num == move + 1) {
+        move = i;
+        break;
+      }
+    }
   }
 
   return move;
 }
 
 unsigned short computer_step() {
-  return generate_move();
+  unsigned short free = 0;
+  Field field = get_field();
+
+  for (unsigned i = 0; i < 9; i++)
+    if (field[i] == Cell::Unused)
+      free++;
+
+  if (free)
+    return generate_move(free, field);
+  else 
+    return 9;
 }

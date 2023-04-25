@@ -16,8 +16,6 @@ else()
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} /Wall")
 endif()
-    
-option(BUILD_TESTS "Set to ON to build tests" OFF)
 
 set(SOURCE_EXE src/main.cpp)
 add_executable(tictactoe ${SOURCE_EXE})
@@ -26,9 +24,8 @@ add_subdirectory(libs/libUI)
 add_subdirectory(libs/libAI)
 add_subdirectory(libs/libError)
 add_subdirectory(libs/libGame)
+add_subdirectory(tests)
 
-if(BUILD_TESTS)
-  add_subdirectory(tests)
-endif()
+add_dependencies(tictactoe tictactoe-test)
 
 target_link_libraries(tictactoe UI AI Error Game)

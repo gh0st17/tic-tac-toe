@@ -42,6 +42,11 @@ void set_field(Field new_field) {
   field = new_field;
 }
 
+void reset_field() {
+  for (size_t i = 0; i < 9; i++)
+    field[i] = Cell::Unused;
+};
+
 Field get_field() {
   return field;
 }

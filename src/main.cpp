@@ -36,9 +36,15 @@ void run(bool mode) {
 
   print();
   while (!check_win_state() && steps_count++ < 9U) {
-    if (!mode && !player)
-      while (!make_step(cell_n = computer_step(), Cell::X));
-    else {
+    if (!mode && !player) {
+      cell_n = computer_step();
+      if (cell_n >= 9 || !make_step(cell_n, Cell::X)) {
+        game_error_code(GameError::COMPUTER_STEP);
+        destroy_field();
+        exit(1);
+      }
+    }
+    else
       while (true) {
         cell_n = read_step(!player ? "Player(X)" : "Player(0)");
         if (!cell_n) {
@@ -51,7 +57,6 @@ void run(bool mode) {
         else
           break;
       }
-    }
 
     player = !player;
     print();

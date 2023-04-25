@@ -5,6 +5,8 @@ void game_error_code(GameError code) {
     print_error("Can't move here");
   else if (code == GameError::INCORRECT_INPUT)
     print_error("Incorrect input");
+  else if (code == GameError::COMPUTER_STEP)
+    print_error("Computer step failure");
   else
     print_error("Unknown error");
 }
@@ -22,6 +24,8 @@ void test_error_code(TestError code) {
     print_error("Check random cell failed");
   else if (code == TestError::COMPUTER_STEP)
     print_error("Computer step failed");
+  else if (code == TestError::FILLED_STEP)
+    print_error("Step in filled field failed");
   else if (code == TestError::ASSET_FILE)
     print_error("Can't open assets file");
   else

@@ -35,6 +35,11 @@ bool make_step(const unsigned short cell_number,
 void set_field(Field new_field);
 
 /** 
+* @brief Очищает поле
+*/
+void reset_field();
+
+/** 
 * @brief Возвращает поле
 * @return Поле
 */
