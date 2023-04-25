@@ -21,6 +21,8 @@ bool analize_step(const unsigned short cell_number,
 
 /** 
 * @brief Функция для генерации хода компьютером
+* @param free Количество свободных клеток
+* @param field Поле
 * @return Ход компьютера
 */
 unsigned short generate_move(unsigned short free, Field field) {
