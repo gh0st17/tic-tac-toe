@@ -8,8 +8,10 @@ void run(bool mode);
 
 int main(int argc, const char* argv[]) {
   if (argc > 1) {
-    if (std::string(argv[1]) == "AI")
+    if (std::string(argv[1]) == "AI") {
+      init_AI();
       run(false);
+    }
     else if (std::string(argv[1]) == "Player")
       run(true);
     else
@@ -26,7 +28,7 @@ void run(bool mode) {
   unsigned short cell_n, steps_count = 0;
 
   auto print = []() {
-#ifdef _WIN64
+#ifdef _WIN32
     system("cls");
 #else
     system("clear");

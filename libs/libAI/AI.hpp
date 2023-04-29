@@ -8,3 +8,8 @@
 * @return Номер клетки
 */
 unsigned short computer_step();
+
+/** 
+* @brief Иницализация псевдочисел
+*/
+void init_AI();

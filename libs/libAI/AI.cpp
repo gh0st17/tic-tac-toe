@@ -1,11 +1,15 @@
 #include "AI.hpp"
 
+std::random_device rd;
+std::mt19937 mt;
+
 /** 
 * @brief Анализ выбранной клетки на победу
 * @param cell_number Номер клетки в поле
 * @param cell_value Значение клетки
-* @return true если клетка не занята
-*         и в пределах поля, false - нет 
+* @param field Поле
+* @return true - ход приведет к выигрышу,
+*         false - нет
 */
 bool analize_step(const unsigned short cell_number,
                   const Cell cell_value, Field field) {
@@ -42,8 +46,6 @@ unsigned short generate_move(unsigned short free, Field field) {
   // Если нет выигрышных и блокирующих ходов, выбираем случайный ход
   if (move == 9) {
     unsigned short num = 0;
-    std::random_device rd;
-    std::mt19937 mt(rd());
     std::uniform_int_distribution<unsigned short> dist(0, free - 1);
     move = dist(mt);
 
@@ -72,4 +74,8 @@ unsigned short computer_step() {
     return generate_move(free, field);
   else 
     return 9;
+}
+
+void init_AI() {
+  mt = std::mt19937(rd());
 }
