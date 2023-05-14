@@ -2,7 +2,11 @@
 
 void close_stdout() {
   std::fclose(stdout);
-  std::freopen ("/dev/tty", "a", stdout);
+#ifdef _WIN32
+  std::freopen("CON", "a", stdout);
+#else
+  std::freopen("/dev/tty", "a", stdout);
+#endif
 }
 
 unsigned test_print_error(const char* error_str) {

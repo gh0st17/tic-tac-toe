@@ -3,7 +3,11 @@
 void close_all() {
   std::fclose(stdin);
   std::fclose(stdout);
-  std::freopen ("/dev/tty", "a", stdout);
+#ifdef _WIN32
+  std::freopen("CON", "a", stdout);
+#else
+  std::freopen("/dev/tty", "a", stdout);
+#endif
 }
 
 bool test_select_mode() {
