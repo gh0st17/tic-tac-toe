@@ -14,6 +14,11 @@ bool test_game_error_code() {
 
   unsigned max_code = 4, counter;
 
+  if (!std::freopen("test_error_out.txt", "w", stdout)) {
+    test_error_code(8);
+    return false;
+  }
+
   const char* messages[5] = {
     "Can't move here", "It is not a digit",
     "Incorrect input", "No free cell",
@@ -23,5 +28,6 @@ bool test_game_error_code() {
   for (unsigned i = 1; i <= max_code + 1; i++)
     counter = test_print_error(messages[i - 1]);
 
+  fclose(stdout);
   return counter == (max_code + 1);
 }

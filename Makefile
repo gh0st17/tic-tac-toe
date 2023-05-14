@@ -28,11 +28,11 @@ $(TESTS_DIR)/$(TARGET)-test:
 ifdef OS
 	$(MAKE) -C .\tests AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) L_FLAG=$(L_FLAG)
 else
-	$(MAKE) -C ./tests AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) L_FLAG=$(L_FLAG)
+	$(MAKE) -C ./tests AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) L_FLAG=$(L_FLAG) CXXFLAGS="$(CXXFLAGS)"
 endif
 
 $(LIB_DIRS):
-	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
+	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) CXXFLAGS="$(CXXFLAGS)"
 
 main.o: $(SRC_DIR)/main.cpp
 	$(CC) $(CXXFLAGS) -c $<

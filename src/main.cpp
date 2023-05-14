@@ -10,15 +10,14 @@ int main() {
   bool player = false;
   std::srand(std::time(0U));
   init_field();
-  unsigned short cell_n, steps_count = 0, mode = 10;
-  while (mode > 9) {
+  unsigned short cell_n, steps_count = 0, mode = select_mode();
+  while (mode == 10) {
+    game_error_code(2);
     mode = select_mode();
-    if (mode > 9)
-      game_error_code(2);
   }
 
   auto print = []() {
-#ifdef _WIN64
+#ifdef _WIN32
     system("cls");
 #else
     system("clear");

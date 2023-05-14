@@ -1,5 +1,6 @@
 #pragma once
 #include "../../../libs/libUI/UI.hpp"
+#include "../../../libs/libError/Error.hpp"
 
 /**
 * @brief Функция-счетчик вызовов печати ошибки
