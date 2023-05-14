@@ -25,7 +25,7 @@ all: clean $(TESTS_DIRS) main.o
 -L$(LIB_DIR) $(LIB_FLAGS) -o $(TARGET)$(EXE)
 
 $(TESTS_DIRS):
-	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR)
+	$(MAKE) -C $@ AR_EXT=$(AR_EXT) CC=$(CC) AR=$(AR) CXXFLAGS="$(CXXFLAGS)"
 
 main.o: $(SRC_DIR)/main.cpp
 	$(CC) $(CXXFLAGS) -c $<

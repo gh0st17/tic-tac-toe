@@ -1,5 +1,10 @@
 #include "error_test.hpp"
 
+void close_stdout() {
+  std::fclose(stdout);
+  std::freopen ("/dev/tty", "a", stdout);
+}
+
 unsigned test_print_error(const char* error_str) {
   static unsigned counter = 0;
 
@@ -28,6 +33,6 @@ bool test_game_error_code() {
   for (unsigned i = 1; i <= max_code + 1; i++)
     counter = test_print_error(messages[i - 1]);
 
-  fclose(stdout);
+  close_stdout();
   return counter == (max_code + 1);
 }
