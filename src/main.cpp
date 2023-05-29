@@ -1,4 +1,3 @@
-#include <random>
 #include "../libs/libAI/AI.hpp"
 #include "../libs/libUI/UI.hpp"
 #include "../libs/libError/Error.hpp"
@@ -23,7 +22,7 @@ int main(int argc, const char* argv[]) {
 }
 
 void run(bool mode) {
-  bool player = false;
+  bool player = (!mode ? true : false);
   init_field();
   unsigned short cell_n, steps_count = 0;
 
@@ -40,8 +39,13 @@ void run(bool mode) {
   while (!check_win_state() && steps_count++ < 9U) {
     if (!mode && !player) {
       cell_n = computer_step();
-      if (cell_n >= 9 || !make_step(cell_n, Cell::X)) {
-        game_error_code(GameError::COMPUTER_STEP);
+      if (cell_n == 9) {
+        game_error_code(GameError::FIELD_FULL);
+        destroy_field();
+        exit(1);
+      }
+      if (cell_n == 10 || !make_step(cell_n, Cell::X)) {
+        game_error_code(GameError::AI_UNKNOWN_STEP);
         destroy_field();
         exit(1);
       }

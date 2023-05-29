@@ -2,7 +2,8 @@
 #include "../libUI/UI.hpp"
 
 enum class GameError {
-  CANT_MOVE_HERE, INCORRECT_INPUT, COMPUTER_STEP
+  CANT_MOVE_HERE, INCORRECT_INPUT,
+  FIELD_FULL,     AI_UNKNOWN_STEP
 };
 
 enum class TestError {

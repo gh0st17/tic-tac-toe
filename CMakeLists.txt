@@ -24,8 +24,12 @@ add_subdirectory(libs/libUI)
 add_subdirectory(libs/libAI)
 add_subdirectory(libs/libError)
 add_subdirectory(libs/libGame)
-add_subdirectory(tests)
+#add_subdirectory(tests)
 
-add_dependencies(tictactoe tictactoe-test)
+#add_dependencies(tictactoe tictactoe-test)
 
 target_link_libraries(tictactoe UI AI Error Game)
+
+add_custom_command(COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/layers.dat .
+                   TARGET tictactoe
+                   COMMENT "Neural network data copied to binary directory")

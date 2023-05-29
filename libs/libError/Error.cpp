@@ -5,8 +5,10 @@ void game_error_code(GameError code) {
     print_error("Can't move here");
   else if (code == GameError::INCORRECT_INPUT)
     print_error("Incorrect input");
-  else if (code == GameError::COMPUTER_STEP)
-    print_error("Computer step failure");
+  else if (code == GameError::FIELD_FULL)
+    print_error("No free cell");
+  else if (code == GameError::AI_UNKNOWN_STEP)
+    print_error("AI unknown step");
   else
     print_error("Unknown error");
 }
