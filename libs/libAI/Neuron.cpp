@@ -17,7 +17,3 @@ double Neuron::LeakyReLU_activate(const std::vector<double>& inputs) {
 
   return (weightedSum < 0.0 ? 0.01 * weightedSum : (weightedSum > 8.0 ? 8.0 : weightedSum));
 }
-
-double Neuron::LeakyReLU_derivative(const double out) {
-  return (out < 0 ? 0.01 : 1.0);
-}

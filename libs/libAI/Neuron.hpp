@@ -12,6 +12,4 @@ public:
   Neuron(std::vector<double> weights, double bias);
 
   double LeakyReLU_activate(const std::vector<double>& inputs);
-
-  double LeakyReLU_derivative(const double out);
 };
