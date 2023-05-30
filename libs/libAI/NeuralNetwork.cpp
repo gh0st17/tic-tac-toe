@@ -8,13 +8,11 @@ NeuralNetwork::NeuralNetwork(const char* filename) {
   }
 
   size_t hiddenLayers;
+  double weight, bias;
 
-  double weight, bias, learningRate, momentum;
-
-  ifs.read(reinterpret_cast<char*>(&learningRate), sizeof(double));
-  ifs.read(reinterpret_cast<char*>(&momentum), sizeof(double));
+  ifs.seekg(16, std::fstream::cur);
   ifs.read(reinterpret_cast<char*>(&hiddenLayers), sizeof(size_t));
-
+  
   hiddenOutput.resize(hiddenLayers);
   hiddenOutput2.resize(hiddenLayers);
   hiddenOutput3.resize(hiddenLayers);
@@ -29,7 +27,7 @@ NeuralNetwork::NeuralNetwork(const char* filename) {
     }
 
     ifs.read(reinterpret_cast<char*>(&bias), sizeof(double));
-    hiddenLayer.push_back(Neuron(learningRate, momentum, weights, bias));
+    hiddenLayer.push_back(Neuron(weights, bias));
   }
 
   weights.resize(hiddenLayers);
@@ -40,7 +38,7 @@ NeuralNetwork::NeuralNetwork(const char* filename) {
     }
 
     ifs.read(reinterpret_cast<char*>(&bias), sizeof(double));
-    hiddenLayer2.push_back(Neuron(learningRate, momentum, weights, bias));
+    hiddenLayer2.push_back(Neuron(weights, bias));
   }
 
   for (size_t n = 0; n < hiddenLayers; n++) {
@@ -50,7 +48,7 @@ NeuralNetwork::NeuralNetwork(const char* filename) {
     }
 
     ifs.read(reinterpret_cast<char*>(&bias), sizeof(double));
-    hiddenLayer3.push_back(Neuron(learningRate, momentum, weights, bias));
+    hiddenLayer3.push_back(Neuron(weights, bias));
   }
 
   for (size_t n = 0; n < 1U; n++) {
@@ -60,7 +58,7 @@ NeuralNetwork::NeuralNetwork(const char* filename) {
     }
 
     ifs.read(reinterpret_cast<char*>(&bias), sizeof(double));
-    outputLayer.push_back(Neuron(learningRate, momentum, weights, bias));
+    outputLayer.push_back(Neuron(weights, bias));
   }
 
   ifs.close();

@@ -1,16 +1,11 @@
 #include "Neuron.hpp"
 
-Neuron::Neuron(double learningRate, double momentum, std::vector<double> weights, double bias) {
-  previousWeightUpdates.resize(weights.size(), 0);
-  this->learningRate = learningRate;
-  this->momentum = momentum;
-
+Neuron::Neuron(std::vector<double> weights, double bias) {
   // Инициализация весов
   this->weights = weights;
 
   // Инициализация смещения
   this->bias = bias;
-  previousBiasUpdate = 0.0;
 }
 
 double Neuron::LeakyReLU_activate(const std::vector<double>& inputs) {

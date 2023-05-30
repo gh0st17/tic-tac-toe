@@ -5,12 +5,11 @@
 
 class Neuron {
 private:
-  std::vector<double> weights, previousWeightUpdates;
-  double bias, previousBiasUpdate,
-         learningRate, momentum;
+  std::vector<double> weights;
+  double bias;
 
 public:
-  Neuron(double learningRate, double momentum, std::vector<double> weights, double bias);
+  Neuron(std::vector<double> weights, double bias);
 
   double LeakyReLU_activate(const std::vector<double>& inputs);
 
